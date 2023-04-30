@@ -43,7 +43,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ) $(HDR)
 	@$(LIB) $(NAME) $(OBJ)
-	@echo "Library has been created"
+	@echo "Library $(NAME) has been created"
 
 bonus: $(OBJ) $(OBJ_BONUS) $(HDR)
 	@$(LIB) $(NAME) $(OBJ) $(OBJ_BONUS)

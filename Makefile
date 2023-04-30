@@ -13,26 +13,34 @@
 NAME = libftprintf.a
 
 HDR = ft_printf.h
-SRC	= ft_printf.c ft_convertions.c
+SRC	= ft_printf.c ft_chars_convert.c ft_nbrs_convert.c
 OBJ = $(SRC:%.c=%.o)
+
+LIBFT = libft/libft.a
+
+MAKE_LIBFT = @make -C libft
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 LIB = ar rcs 
 
-all : $(NAME)
+all : make_ft $(NAME)
 
-$(NAME): $(OBJ) $(HDR)
-	make -C libft
-	@$(LIB) $(NAME) $(OBJ)
-	@echo "Library has been created"
+make_ft:
+	$(MAKE_LIBFT)
+
+$(NAME): $(OBJ) $(HDR) $(LIBFT)
+	$(LIB) $(NAME) $(OBJ) $(LIBFT)
+	@echo "Library $(NAME) has been created"
 
 .PHONY: clean fclean re 
 
 clean :
-	rm -f $(OBJ) 
+	rm -f $(OBJ)
+	$(MAKE_LIBFT) clean 
 
 fclean : clean
 	rm -f $(NAME)
+	$(MAKE_LIBFT) fclean
 
 re : fclean all
