@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+YELLOW = \033[0;93M
+
 NAME = libftprintf.a
 
 HDR = ft_printf.h
@@ -30,7 +32,8 @@ make_ft:
 	$(MAKE_LIBFT)
 
 $(NAME): $(OBJ) $(HDR) $(LIBFT)
-	$(LIB) $(NAME) $(OBJ) $(LIBFT)
+	@cp $(LIBFT) $(NAME)
+	@$(LIB) $(NAME) $(OBJ)
 	@echo "Library $(NAME) has been created"
 
 .PHONY: clean fclean re 

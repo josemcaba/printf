@@ -13,11 +13,17 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
+void	ft_leaks(void)
+{
+	system("leaks -q a.out");
+}
+
 int main(void) 
 {
 	int		count;
 	char	*ptr = "Puntero";
 
+	atexit(ft_leaks);
 	count = printf("Hola mundo!--");
 	printf("%d\n", count-2);
 	count = ft_printf("Hola mundo!--");
