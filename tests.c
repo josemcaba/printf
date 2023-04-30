@@ -1,42 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
+/*   Updated: 2023/04/30 08:30:55 by jocaball         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <stdio.h>
 
 int main(void) 
 {
 	int		count;
-	char	*ptr = "Puntero : ";
+	char	*ptr = "Puntero";
 
-	count = printf("Hola mundo! -- ");
-	printf("%d\n", count);
-	count = ft_printf("Hola mundo! -- ");
-	printf("%d\n", count);	
+	count = printf("Hola mundo!--");
+	printf("%d\n", count-2);
+	count = ft_printf("Hola mundo!--");
+	printf("%d\n", count-2);	
 
-	count = printf("Caracter : %c -- ", 'A');
-	printf("%d\n", count);
-	count = ft_printf("Caracter : %c -- ", 'A');
-	printf("%d\n", count);		
+	count = printf("Caracter:%c--", 'M');
+	printf("%d\n", count-2);
+	count = ft_printf("Caracter:%c--", 'M');
+	printf("%d\n", count-2);		
 
-	count = printf("Cadena : %s -- ", "");
-	printf("%d\n", count);
-	count = ft_printf("Cadena : %s -- ", "");
-	printf("%d\n", count);	
+	count = printf("Cadena:%s--", "");
+	printf("%d\n", count-2);
+	count = ft_printf("Cadena:%s--", "");
+	printf("%d\n", count-2);	
 
-	count = printf("Cadena : %s -- ", "42 MAlaga");
-	printf("%d\n", count);
-	count = ft_printf("Cadena : %s -- ", "42 MAlaga");
-	printf("%d\n", count);	
+	count = printf("Cadena:%s--", "42 Málaga");
+	printf("%d\n", count-2);
+	count = ft_printf("Cadena:%s--", "42 Málaga");
+	printf("%d\n", count-2);	
 
-	ptr = ptr - 0x100000000;
-	count = printf("%p-", ptr);
-	printf("%d\n", count);
-	count = ft_printf("%p-", ptr);
-	printf("%d\n", count);	
+	count = printf("%s:%p--", ptr, ptr);
+	printf("%d\n", count-2);
+	count = ft_printf("%s:%p--", ptr, ptr);
+	printf("%d\n", count-2);
 
+	ptr = 0;
+	count = printf("%s:%p--", ptr, ptr);
+	printf("%d\n", count-2);
+	count = ft_printf("%s:%p--", ptr, ptr);
+	printf("%d\n", count-2);
 
-	// count = printf("Hola : %c %s%s %p x %d / %d %%\n", 'A', str1, str2, str1, 1654515, -4121275);
-	// printf("%d\n", count);
-	// count = ft_printf("Hola : %c %s%s %p x %d / %d %%\n", 'A', str1, str2, str1, 1654515, -4121275);
-	// printf("%d\n", count);
+	count = printf("Decimal:%d--", 1523589012);
+	printf("%d\n", count-2);
+	count = ft_printf("Decimal:%d--", 1523589012);
+	printf("%d\n", count-2);
+
+	count = printf("Decimal:%d--", -152358);
+	printf("%d\n", count-2);
+	count = ft_printf("Decimal:%d--", -152358);
+	printf("%d\n", count-2);
+
+	count = printf("Entero:%i--", 152358);
+	printf("%d\n", count-2);
+	count = ft_printf("Entero:%i--", 152358);
+	printf("%d\n", count-2);
+
+	count = printf("Entero:%i--", -152358);
+	printf("%d\n", count-2);
+	count = ft_printf("Entero:%i--", -152358);
+	printf("%d\n", count-2);
+
+	count = printf("Sin signo:%u--", -1);
+	printf("%d\n", count-2);
+	count = ft_printf("Sin signo:%u--", -1);
+	printf("%d\n", count-2);
+
+	count = printf("hexadecimal:%x--", 0);
+	printf("%d\n", count-2);
+	count = ft_printf("hexadecimal:%x--", 0);
+	printf("%d\n", count-2);
+
+	count = printf("HEXADECIMAL:%X--", -1);
+	printf("%d\n", count-2);
+	count = ft_printf("HEXADECIMAL:%X--", -1);
+	printf("%d\n", count-2);
+
+	count = printf("Porcentaje:%%--");
+	printf("%d\n", count-2);
+	count = ft_printf("Porcentaje:%%--");
+	printf("%d\n", count-2);
 
     return 0;
+
+	
 }
