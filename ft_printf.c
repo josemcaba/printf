@@ -53,15 +53,16 @@ static int	ft_convert(va_list *args, t_flags *flags)
 		len = ft_pf_ptr(args, flags->specifier);
 	else if ((flags->specifier == 'x') || (flags->specifier == 'X'))
 		len = ft_pf_hex(args, flags);
-	else if ((flags->specifier == 'd') \
-		|| (flags->specifier == 'i') || (flags->specifier == 'u'))
-		len = ft_pf_nbr(args, flags->specifier);
+	else if ((flags->specifier == 'd') || (flags->specifier == 'i'))
+		len = ft_pf_nbr(args, flags);
+	else if (flags->specifier == 'u')
+		len = ft_pf_uint(args, flags);
 	else if (flags->specifier == '%')
 		ft_putchar_fd(flags->specifier, ++len);
 	return (len);
 }
 
-int	ft_parser(char const *format, va_list *args, int *nflags)
+static int	ft_parser(char const *format, va_list *args, int *nflags)
 {
 	char	*valid_flags;
 	int		len;

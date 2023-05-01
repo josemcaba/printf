@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 14:19:51 by jocaball          #+#    #+#              #
-#    Updated: 2023/04/27 20:27:55 by jocaball         ###   ########.fr        #
+#    Updated: 2023/05/01 12:48:55 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ YELLOW = \033[0;93M
 NAME = libftprintf.a
 
 HDR = ft_printf.h
-SRC	= ft_printf.c ft_chars_convert.c ft_nbrs_convert.c
+SRC	= ft_printf.c ft_chars_convert.c ft_nbrs_convert.c ft_hex_convert.c
 OBJ = $(SRC:%.c=%.o)
 
 LIBFT = libft/libft.a
@@ -48,6 +48,6 @@ fclean : clean
 
 re : fclean all
 
-tests : all 
+tests : all
 	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf
 	./a.exe

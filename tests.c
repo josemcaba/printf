@@ -27,80 +27,118 @@ int main(void)
 	count = printf("Hola mundo!--");
 	printf("%d\n", count-2);
 	count = ft_printf("Hola mundo!--");
-	printf("%d\n", count-2);	
+	ft_printf("%d\n", count-2);	
 
 	count = printf("Caracter:%c--", 'M');
 	printf("%d\n", count-2);
 	count = ft_printf("Caracter:%c--", 'M');
-	printf("%d\n", count-2);		
+	ft_printf("%d\n", count-2);		
 
 	count = printf("Cadena:%s--", "");
 	printf("%d\n", count-2);
 	count = ft_printf("Cadena:%s--", "");
-	printf("%d\n", count-2);	
+	ft_printf("%d\n", count-2);	
 
 	count = printf("Cadena:%s--", "42 Malaga");
 	printf("%d\n", count-2);
 	count = ft_printf("Cadena:%s--", "42 Malaga");
-	printf("%d\n", count-2);	
+	ft_printf("%d\n", count-2);	
 
 	count = printf("%s:%p--", ptr, ptr);
 	printf("%d\n", count-2);
 	count = ft_printf("%s:%p--", ptr, ptr);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	ptr = 0;
 	count = printf("%s:%p--", ptr, ptr);
 	printf("%d\n", count-2);
 	count = ft_printf("%s:%p--", ptr, ptr);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	count = printf("Decimal:%d--", 1523589012);
 	printf("%d\n", count-2);
 	count = ft_printf("Decimal:%d--", 1523589012);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	count = printf("Decimal:%d--", -152358);
 	printf("%d\n", count-2);
 	count = ft_printf("Decimal:%d--", -152358);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	count = printf("Entero:%i--", 152358);
 	printf("%d\n", count-2);
 	count = ft_printf("Entero:%i--", 152358);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	count = printf("Entero:%i--", -152358);
 	printf("%d\n", count-2);
 	count = ft_printf("Entero:%i--", -152358);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	count = printf("Sin signo:%u--", -1);
 	printf("%d\n", count-2);
 	count = ft_printf("Sin signo:%u--", -1);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
-	count = printf("hexadecimal:%#x--", 39856);
+	count = printf("hexadecimal:%x--", 39856);
 	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%#x--", 39856);
-	printf("%d\n", count-2);
+	count = ft_printf("hexadecimal:%x--", 39856);
+	ft_printf("%d\n", count-2);
 
-	count = printf("hexadecimal:%#x--", 0);
+	count = printf("hexadecimal:%x--", 0);
 	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%#x--", 0);
-	printf("%d\n", count-2);
+	count = ft_printf("hexadecimal:%x--", 0);
+	ft_printf("%d\n", count-2);
 
 	count = printf("HEXADECIMAL:%X--", -521);
 	printf("%d\n", count-2);
 	count = ft_printf("HEXADECIMAL:%X--", -521);
-	printf("%d\n", count-2);
+	ft_printf("%d\n", count-2);
 
 	count = printf("Porcentaje:%%--");
 	printf("%d\n", count-2);
 	count = ft_printf("Porcentaje:%%--");
+	ft_printf("%d\n", count-2);
+
+	ft_printf("\n*****  BONUS  *****\n\n");
+
+	count = printf("hexadecimal:%#x--", 39856);
+	printf("%d\n", count-2);
+	count = ft_printf("hexadecimal:%#x--", 39856);
+	ft_printf("%d\n", count-2);
+
+	count = printf("hexadecimal:%#x--", 0);
+	printf("%d\n", count-2);
+	count = ft_printf("hexadecimal:%#x--", 0);
+	ft_printf("%d\n", count-2);
+
+	count = printf("HEXADECIMAL:%#X--", -521);
+	printf("%d\n", count-2);
+	count = ft_printf("HEXADECIMAL:%#X--", -521);
+	ft_printf("%d\n", count-2);
+
+	count = printf("Decimal:%+d--", 1523589012);
+	printf("%d\n", count-2);
+	count = ft_printf("Decimal:%+d--", 1523589012);
+	ft_printf("%d\n", count-2);
+
+	count = printf("Decimal:%+d--", -152358);
+	printf("%d\n", count-2);
+	count = ft_printf("Decimal:%+d--", -152358);
+	ft_printf("%d\n", count-2);
+
+	count = printf("Entero:% i--", 152358);
+	printf("%d\n", count-2);
+	count = ft_printf("Entero:% i--", 152358);
+	ft_printf("%d\n", count-2);
+
+	count = printf("Entero:% i--", -152358);
+	printf("%d\n", count-2);
+	count = ft_printf("Entero:% i--", -152358);
+	ft_printf("%d\n", count-2);
+
+	count = printf("%10s--", "Hola");
 	printf("%d\n", count-2);
 
     return 0;
-
-	
 }
