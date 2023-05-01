@@ -39,9 +39,9 @@ int main(void)
 	count = ft_printf("Cadena:%s--", "");
 	printf("%d\n", count-2);	
 
-	count = printf("Cadena:%s--", "42 Málaga");
+	count = printf("Cadena:%s--", "42 Malaga");
 	printf("%d\n", count-2);
-	count = ft_printf("Cadena:%s--", "42 Málaga");
+	count = ft_printf("Cadena:%s--", "42 Malaga");
 	printf("%d\n", count-2);	
 
 	count = printf("%s:%p--", ptr, ptr);
@@ -80,14 +80,19 @@ int main(void)
 	count = ft_printf("Sin signo:%u--", -1);
 	printf("%d\n", count-2);
 
-	count = printf("hexadecimal:%x--", 0);
+	count = printf("hexadecimal:%#x--", 39856);
 	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%x--", 0);
+	count = ft_printf("hexadecimal:%#x--", 39856);
 	printf("%d\n", count-2);
 
-	count = printf("HEXADECIMAL:%X--", -1);
+	count = printf("hexadecimal:%#x--", 0);
 	printf("%d\n", count-2);
-	count = ft_printf("HEXADECIMAL:%X--", -1);
+	count = ft_printf("hexadecimal:%#x--", 0);
+	printf("%d\n", count-2);
+
+	count = printf("HEXADECIMAL:%X--", -521);
+	printf("%d\n", count-2);
+	count = ft_printf("HEXADECIMAL:%X--", -521);
 	printf("%d\n", count-2);
 
 	count = printf("Porcentaje:%%--");

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nbr_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
 /*   Updated: 2023/04/30 09:26:05 by jocaball         ###   ########.fr       */
@@ -42,26 +42,39 @@ int	ft_puthex(size_t n, char specifier)
 	return (len + 1);
 }
 
-int	ft_pf_hex(va_list *args, char specifier)
+int	ft_pf_ptr(va_list *args, char specifier)
 {
 	size_t	nbr;
 	int		len;
 
 	len = 0;
-	if (specifier == 'p')
+	nbr = (size_t)va_arg(*args, void *);
+	if (!nbr)
 	{
-		nbr = (size_t)va_arg(*args, void *);
-		if (!nbr)
-		{
-			ft_putstr_fd("(null)", 1);
-			return (ft_strlen("(null)"));
-		}
-		ft_putstr_fd("0x", 1);
-		len = 2;
+		ft_putstr_fd("(nil)", 1);
+		return (ft_strlen("(nil)"));
 	}
-	else
-		nbr = va_arg(*args, size_t);
-	len += ft_puthex(nbr, specifier);
+	ft_putstr_fd("0x", 1);
+	len = 2 + ft_puthex(nbr, specifier);
+	return (len);
+}
+
+int	ft_pf_hex(va_list *args, t_flags *flags)
+{
+	size_t	nbr;
+	int		len;
+
+	len = 0;
+	nbr = va_arg(*args, size_t);
+	if ((flags->hash == 1) && (nbr != 0))
+	{
+		if (flags->specifier == 'X')
+			ft_putstr_fd("0X", 1);
+		else
+			ft_putstr_fd("0x", 1);
+		len += 2;
+	}
+	len += ft_puthex(nbr, flags->specifier);
 	return (len);
 }
 
