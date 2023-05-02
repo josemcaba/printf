@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 08:36:40 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 13:39:54 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 22:15:37 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_flags
 }	t_flags;
 
 int		ft_printf(char const *format, ...);
+ssize_t	ft_putchar(char c);
+ssize_t	ft_putstr(char *s);
 void	ft_init_flags(t_flags *flags);
 void	ft_read_flags(t_flags *flags, char const *format);
 int		ft_pf_char(va_list *args, t_flags *flags);

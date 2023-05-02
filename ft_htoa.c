@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:52:20 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 12:18:11 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:27:20 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	ft_hnbr_len(size_t n)
 
 static void	ft_fillhnbr(size_t n, char *str)
 {
+	char	*hex_base;
+
 	hex_base = "0123456789abcdef";
 	if (n > 15)
 		ft_fillhnbr(n / 16, str - 1);
@@ -49,7 +51,7 @@ char	*ft_htoa(size_t n)
 	len = ft_hnbr_len(n);
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+		return (0);
 	str[len] = '\0';
 	ft_fillhnbr(n, &str[len - 1]);
 	return (str);

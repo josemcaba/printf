@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 13:38:37 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:08:41 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	ft_puthex(size_t n, char specifier)
 	if (n > 15)
 		len = ft_puthex((n / 16), specifier);
 	digit = n % 16;
-	ft_putchar_fd(hex_base[digit], 1);
+	if (ft_putchar(hex_base[digit]) == -1)
+		return (-1);
 	return (len + 1);
 }
 
@@ -38,14 +39,17 @@ int	ft_pf_ptr(va_list *args, char specifier)
 	nbr = (size_t)va_arg(*args, void *);
 	if (!nbr)
 	{
-		ft_putstr_fd("0x0", 1);
+		if (ft_putstr("0x0") == -1)
+			return (-1);
 		return (ft_strlen("0x0"));
 	}
-	ft_putstr_fd("0x", 1);
+	if (ft_putstr("0x") == -1)
+		return (-1);
 	len = 2 + ft_puthex(nbr, specifier);
 	return (len);
 }
 
+// La funcion printf() admite maximo unsigned int
 int	ft_pf_hex(va_list *args, t_flags *flags)
 {
 	unsigned int	nbr;

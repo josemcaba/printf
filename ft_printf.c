@@ -6,11 +6,16 @@
 /*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 08:36:56 by jocaball          #+#    #+#             */
-/*   Updated: 2023/04/30 10:37:59 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:16:37 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+ssize_t	ft_putchar(char c)
+{
+	return (write(1, &c, 1));
+}
 
 static int	ft_convert(va_list *args, t_flags *flags)
 {
@@ -30,7 +35,7 @@ static int	ft_convert(va_list *args, t_flags *flags)
 	else if (flags->specifier == 'u')
 		len = ft_pf_uint(args, flags);
 	else if (flags->specifier == '%')
-		ft_putchar_fd(flags->specifier, ++len);
+		len = ft_putchar(flags->specifier);
 	return (len);
 }
 
@@ -38,6 +43,7 @@ int	ft_printf(char const *format, ...)
 {
 	va_list	args;
 	int		len;
+	int		t_len;
 	t_flags	flags;
 
 	va_start (args, format);
@@ -48,11 +54,15 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			ft_read_flags(&flags, ++format);
-			len += ft_convert(&args, &flags);
+			t_len = ft_convert(&args, &flags);
+			if (t_len == -1)
+				return (-1);
+			len += t_len;
 		}
 		else
 		{
-			ft_putchar_fd(*format, 1);
+			if (ft_putchar(*format) == -1)
+				return (-1);
 			len++;
 		}
 		format += (1 + flags.nflags);

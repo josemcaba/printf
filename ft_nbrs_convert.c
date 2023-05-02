@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 12:34:58 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:09:19 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_pf_nbr(va_list *args, t_flags *flags)
 {
 	int		len;
+	int		t_len;
 	int		nbr;
 	char	*str;
 
@@ -22,10 +23,12 @@ int	ft_pf_nbr(va_list *args, t_flags *flags)
 	len = ft_putprefix(nbr, flags);
 	str = ft_itoa(nbr);
 	if (!str)
-		return (0);
-	ft_putstr_fd(str, 1);
-	len += ft_strlen(str);
+		return (-1);
+	t_len = ft_putstr(str);
 	free(str);
+	if (t_len == -1)
+		return (-1);
+	len += t_len;
 	return (len);
 }
 
@@ -38,7 +41,8 @@ static int	ft_putuint(unsigned int n)
 	if (n > 9)
 		len = ft_putuint((n / 10));
 	digit = (n % 10) + '0';
-	ft_putchar_fd(digit, 1);
+	if (ft_putchar(digit) == -1)
+		return (-1);
 	return (len + 1);
 }
 
