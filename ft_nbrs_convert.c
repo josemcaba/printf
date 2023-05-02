@@ -21,6 +21,8 @@ int	ft_pf_nbr(va_list *args, t_flags *flags)
 	nbr = va_arg(*args, int);
 	len = ft_putprefix(nbr, flags);
 	str = ft_itoa(nbr);
+	if (!str)
+		return (0);
 	ft_putstr_fd(str, 1);
 	len += ft_strlen(str);
 	free(str);
