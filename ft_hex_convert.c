@@ -51,16 +51,8 @@ int	ft_pf_hex(va_list *args, t_flags *flags)
 	size_t	nbr;
 	int		len;
 
-	len = 0;
 	nbr = va_arg(*args, size_t);
-	if ((flags->hash) && (nbr != 0))
-	{
-		if (flags->specifier == 'X')
-			ft_putstr_fd("0X", 1);
-		else
-			ft_putstr_fd("0x", 1);
-		len += 2;
-	}
+	len = ft_putprefix(nbr, flags);
 	len += ft_puthex(nbr, flags->specifier);
 	return (len);
 }

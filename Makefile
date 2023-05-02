@@ -10,12 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-YELLOW = \033[0;93M
-
 NAME = libftprintf.a
 
 HDR = ft_printf.h
-SRC	= ft_printf.c ft_chars_convert.c ft_nbrs_convert.c ft_hex_convert.c
+
+SRC	= 	ft_printf.c			ft_chars_convert.c	ft_nbrs_convert.c \
+		ft_hex_convert.c	ft_flags_input.c	ft_flags_output.c
+		
 OBJ = $(SRC:%.c=%.o)
 
 LIBFT = libft/libft.a

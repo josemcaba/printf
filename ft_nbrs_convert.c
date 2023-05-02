@@ -12,6 +12,21 @@
 
 #include "ft_printf.h"
 
+int	ft_pf_nbr(va_list *args, t_flags *flags)
+{
+	int		len;
+	int		nbr;
+	char	*str;
+
+	nbr = va_arg(*args, int);
+	len = ft_putprefix(nbr, flags);
+	str = ft_itoa(nbr);
+	ft_putstr_fd(str, 1);
+	len += ft_strlen(str);
+	free(str);
+	return (len);
+}
+
 static int ft_putuint(unsigned int n)
 {
 	int	digit;
@@ -34,27 +49,4 @@ int	ft_pf_uint(va_list *args, t_flags *flags)
 	return (len);
 }
 
-int	ft_pf_nbr(va_list *args, t_flags *flags)
-{
-	int		len;
-	int		nbr;
-	char	*str;
 
-	nbr = va_arg(*args, int);
-	len = 0;
-	if ((nbr > 0) && (flags->plus))
-	{
-		ft_putchar_fd('+', 1);
-		len = 1;
-	}
-	else if ((nbr > 0) && (flags->space))
-	{
-		ft_putchar_fd(' ', 1);
-		len = 1;
-	}
-	str = ft_itoa(nbr);
-	ft_putstr_fd(str, 1);
-	len += ft_strlen(str);
-	free(str);
-	return (len);
-}

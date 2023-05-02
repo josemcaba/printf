@@ -27,14 +27,18 @@ typedef struct s_flags
 	int 	space;
 	int		plus;
 	int		width;
+	int		nflags;
 }	t_flags;
 
-int	ft_printf(char const *, ...);
-int	ft_pf_char(va_list *args);
-int	ft_pf_string(va_list *args);
-int	ft_pf_ptr(va_list *args, char specifier);
-int	ft_pf_hex(va_list *args, t_flags *flags);
-int	ft_pf_nbr(va_list *args, t_flags *flags);
-int	ft_pf_uint(va_list *args, t_flags *flags);
+int		ft_printf(char const *, ...);
+void	ft_init_flags(t_flags *flags);
+void	ft_read_flags(t_flags *flags, char const *format);
+int		ft_pf_char(va_list *args, t_flags *flags);
+int		ft_pf_string(va_list *args, t_flags *flags);
+int		ft_pf_ptr(va_list *args, char specifier);
+int		ft_pf_hex(va_list *args, t_flags *flags);
+int		ft_pf_nbr(va_list *args, t_flags *flags);
+int		ft_pf_uint(va_list *args, t_flags *flags);
+int		ft_putprefix(int nbr, t_flags *flags);
 
 #endif
