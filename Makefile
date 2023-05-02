@@ -51,4 +51,4 @@ re : fclean all
 
 tests : all
 	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf
-	./a.exe
+	./a.out

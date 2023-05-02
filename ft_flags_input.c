@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags_input.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 12:14:11 by jocaball          #+#    #+#             */
+/*   Updated: 2023/05/02 12:14:58 by jocaball         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	ft_init_flags(t_flags *flags)
@@ -13,11 +25,11 @@ void	ft_init_flags(t_flags *flags)
 	flags->nflags = 0;
 }
 
-static void ft_fill_flags(t_flags *flags, char flag)
+static void	ft_fill_flags(t_flags *flags, char flag)
 {
 	if (flag == '-')
 		flags->minus = 1;
-	else if (flag == '0') 
+	else if (flag == '0')
 		flags->zero = 1;
 	else if (flag == '.')
 		flags->dot = 1;
@@ -43,7 +55,7 @@ void	ft_read_flags(t_flags *flags, char const *format)
 		i++;
 	}
 	flags->width = ft_atoi(&format[i]);
-	while(ft_isdigit(format[i]))
+	while (ft_isdigit(format[i]))
 		i++;
 	flags->nflags = i;
 	flags->specifier = format[i];

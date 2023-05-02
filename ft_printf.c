@@ -15,13 +15,13 @@
 static int	ft_convert(va_list *args, t_flags *flags)
 {
 	int		len;
-	
+
 	len = 0;
 	if (flags->specifier == 'c')
 		len = ft_pf_char(args, flags);
 	else if (flags->specifier == 's')
 		len = ft_pf_string(args, flags);
-	else if (flags->specifier == 'p') 
+	else if (flags->specifier == 'p')
 		len = ft_pf_ptr(args, flags->specifier);
 	else if ((flags->specifier == 'x') || (flags->specifier == 'X'))
 		len = ft_pf_hex(args, flags);
@@ -36,13 +36,13 @@ static int	ft_convert(va_list *args, t_flags *flags)
 
 int	ft_printf(char const *format, ...)
 {
-	va_list args;
+	va_list	args;
 	int		len;
 	t_flags	flags;
 
-    va_start(args, format);
+	va_start (args, format);
 	len = 0;
-	while(*format)
+	while (*format)
 	{
 		flags.nflags = 0;
 		if (*format == '%')
@@ -58,5 +58,5 @@ int	ft_printf(char const *format, ...)
 		format += (1 + flags.nflags);
 	}
 	va_end(args);
-	return(len);
+	return (len);
 }

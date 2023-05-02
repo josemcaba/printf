@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags_output.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 12:16:07 by jocaball          #+#    #+#             */
+/*   Updated: 2023/05/02 13:39:03 by jocaball         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_putprefix(int nbr, t_flags *flags)
+int	ft_putprefix(unsigned int nbr, t_flags *flags)
 {
 	int	len;
 

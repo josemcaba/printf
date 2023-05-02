@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char_convert.c                                  :+:      :+:    :+:   */
+/*   ft_chars_convert.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:19:30 by jocaball          #+#    #+#             */
-/*   Updated: 2023/04/30 09:19:30 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:13:02 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int padding_char(unsigned char c, t_flags *flags)
+int	padding_char(unsigned char c, t_flags *flags)
 {
 	int	len;
 
@@ -23,7 +22,7 @@ int padding_char(unsigned char c, t_flags *flags)
 		ft_putchar_fd(c, 1);
 		while (--flags->width)
 			ft_putchar_fd(' ', 1);
-	} 
+	}
 	else
 	{
 		while (--flags->width)
@@ -46,7 +45,7 @@ int	ft_pf_char(va_list *args, t_flags *flags)
 		ft_putchar_fd(c, 1);
 		len = 1;
 	}
-	return (len);	
+	return (len);
 }
 
 int	padding_str(char *str, t_flags *flags)
@@ -63,7 +62,7 @@ int	padding_str(char *str, t_flags *flags)
 	ft_memset(s, ' ', s_len);
 	s[s_len] = '\0';
 	if (flags->dot)
-		ft_memcpy(s, str, s_len); 
+		ft_memcpy(s, str, s_len);
 	else if (flags->minus)
 		ft_memcpy(s, str, ft_strlen(str));
 	else
@@ -73,7 +72,7 @@ int	padding_str(char *str, t_flags *flags)
 	return (s_len);
 }
 
-int ft_pf_string(va_list *args, t_flags *flags)
+int	ft_pf_string(va_list *args, t_flags *flags)
 {
 	char	*str;
 	int		len;
