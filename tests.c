@@ -21,11 +21,10 @@ void	ft_leaks(void)
 int	main(void)
 {
 	int	count;
-
 	atexit(ft_leaks);
-	count = printf("%20.5s", "42Malaga");
+	count = printf("%-20.5s-", "42Malaga");
 	printf("\n%d\n", count);
-	count = ft_printf("%20.5s", "42Malaga");
+	count = ft_printf("%-20.5s-", "42Malaga");
 	printf("\n%d\n", count);
 	return (0);
 }

@@ -14,8 +14,9 @@ NAME = libftprintf.a
 
 HDR = ft_printf.h
 
-SRC	= 	ft_printf.c			ft_chars_convert.c	ft_nbrs_convert.c \
-		ft_hex_convert.c	ft_flags_input.c	ft_flags_output.c
+SRC	= 	ft_printf.c			ft_char_convert.c	ft_nbr_convert.c \
+		ft_hex_convert.c	ft_flags_input.c	ft_flags_output.c \
+		ft_htoa.c			ft_str_convert.c
 		
 OBJ = $(SRC:%.c=%.o)
 

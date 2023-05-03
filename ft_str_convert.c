@@ -12,68 +12,31 @@
 
 #include "ft_printf.h"
 
-int	padding_char(unsigned char c, t_flags *flags)
-{
-	int	len;
-
-	len = flags->width;
-	if (flags->minus)
-	{
-		if (ft_putchar(c) == -1)
-			return (-1);
-		while (--flags->width)
-			if (ft_putchar(' ') == -1)
-				return (-1);
-	}
-	else
-	{
-		while (--flags->width)
-			if (ft_putchar(' ') == -1)
-				return (-1);
-		if (ft_putchar(c) == -1)
-			return (-1);
-	}
-	return (len);
-}
-
-int	ft_pf_char(va_list *args, t_flags *flags)
-{
-	unsigned int	c;
-	int				len;
-
-	c = va_arg(*args, unsigned int);
-	if (flags->width)
-		len = padding_char(c, flags);
-	else
-		len = ft_putchar(c);
-	return (len);
-}
-
 int	padding_str(char *str, t_flags *flags)
 {
 	char	*s;
 	int		s_len;
+	int		p_len;
 
 	s_len = ft_strlen(str);
-	if (flags->dot && (flags->width < s_len))
-		s_len = flags->width;
-	if (!flags->dot && (flags->width > s_len))
-		s_len = flags->width;
-	s = (char *)malloc(s_len * sizeof(char) + 1);
+	if (flags->dot)
+		s_len = flags->precision;
+	p_len = s_len;
+	if (flags->width > p_len)
+		p_len = flags->width;
+	s = (char *)malloc(p_len * sizeof(char) + 1);
 	if (!s)
 		return (0);
-	ft_memset(s, ' ', s_len);
-	s[s_len] = '\0';
-	if (flags->dot)
+	ft_memset(s, ' ', p_len);
+	s[p_len] = '\0';
+	if (flags->minus)
 		ft_memcpy(s, str, s_len);
-	else if (flags->minus)
-		ft_memcpy(s, str, ft_strlen(str));
 	else
-		ft_memcpy(s + s_len - ft_strlen(str), str, ft_strlen(str));
+		ft_memcpy(s + p_len - s_len, str, s_len);
 	if (ft_putstr(s) == -1)
-		s_len = -1;
+		p_len = -1;
 	free(s);
-	return (s_len);
+	return (p_len);
 }
 
 int	ft_pf_string(va_list *args, t_flags *flags)
