@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putprefix(unsigned int nbr, t_flags *flags)
+int	ft_putprefix(int nbr, t_flags *flags)
 {
 	int	len;
 
