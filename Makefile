@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 14:19:51 by jocaball          #+#    #+#              #
-#    Updated: 2023/05/01 12:48:55 by jocaball         ###   ########.fr        #
+#    Updated: 2023/05/03 10:53:45 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ fclean : clean
 
 re : fclean all
 
-bonus : all
+#bonus : all
 
 tests : all
 	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf -o a.exe
