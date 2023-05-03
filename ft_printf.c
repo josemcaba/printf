@@ -42,6 +42,26 @@ static int	ft_convert(va_list *args, t_flags *flags)
 	return (len);
 }
 
+int	ft_parse_and_print(char const *format, t_flags *flags, va_list *args)
+{
+	int	len;
+
+	if (*format == '%')
+	{
+		ft_read_flags(flags, ++format);
+		len = ft_convert(args, flags);
+		if (len == -1)
+			return (-1);
+	}
+	else
+	{
+		len = ft_putchar(*format);
+		if (len == -1)
+			return (-1);
+	}
+	return (len);
+}
+
 int	ft_printf(char const *format, ...)
 {
 	va_list	args;
@@ -54,21 +74,15 @@ int	ft_printf(char const *format, ...)
 	while (*format)
 	{
 		flags.nflags = 0;
+		t_len = ft_parse_and_print(format, &flags, &args);
+		if (t_len == -1)
+			return (-1);
+		len += t_len;
 		if (*format == '%')
-		{
-			ft_read_flags(&flags, ++format);
-			t_len = ft_convert(&args, &flags);
-			if (t_len == -1)
-				return (-1);
-			len += t_len;
-		}
+			format += 2;
 		else
-		{
-			if (ft_putchar(*format) == -1)
-				return (-1);
-			len++;
-		}
-		format += (1 + flags.nflags);
+			format += 1;
+		format += flags.nflags;
 	}
 	va_end(args);
 	return (len);

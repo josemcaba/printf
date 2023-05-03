@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
-/*   Updated: 2023/04/30 08:30:56 by jocaball         ###   ########.fr       */
+/*   Created: 2023/05/03 12:38:11 by jocaball          #+#    #+#             */
+/*   Updated: 2023/05/03 12:38:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_leaks(void)
 {
-	system("leaks -q a.out");
+	system("leaks -q a.exe");
 }
 
 int main(void) 
