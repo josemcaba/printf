@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chars_convert.c                                 :+:      :+:    :+:   */
+/*   ft_str_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:19:30 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/03 14:10:27 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:33:58 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 int	padding_str(char *str, t_flags *flags)
 {
 	char	*s;
-	int		s_len;
-	int		p_len;
+	int		str_len;
+	int		pad_len;
 
-	s_len = ft_strlen(str);
-	if (flags->dot)
-		s_len = flags->precision;
-	p_len = s_len;
-	if (flags->width > p_len)
-		p_len = flags->width;
-	s = (char *)malloc(p_len * sizeof(char) + 1);
+	str_len = ft_strlen(str);
+	if ((flags->dot) && (flags->precision < str_len))
+		str_len = flags->precision;
+	pad_len = str_len;
+	if (flags->width > pad_len)
+		pad_len = flags->width;
+	s = (char *)malloc(pad_len * sizeof(char) + 1);
 	if (!s)
-		return (0);
-	ft_memset(s, ' ', p_len);
-	s[p_len] = '\0';
+		return (-1);
+	ft_memset(s, ' ', pad_len);
+	s[pad_len] = '\0';
 	if (flags->minus)
-		ft_memcpy(s, str, s_len);
+		ft_memcpy(s, str, str_len);
 	else
-		ft_memcpy(s + p_len - s_len, str, s_len);
+		ft_memcpy(s + pad_len - str_len, str, str_len);
 	if (ft_putstr(s) == -1)
-		p_len = -1;
+		pad_len = -1;
 	free(s);
-	return (p_len);
+	return (pad_len);
 }
 
 int	ft_pf_string(va_list *args, t_flags *flags)

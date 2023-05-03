@@ -42,7 +42,7 @@ static int	ft_convert(va_list *args, t_flags *flags)
 		len = ft_pf_nbr(args, flags);
 	else if (flags->specifier == 'u')
 		len = ft_pf_uint(args, flags);
-	else if (flags->specifier == '%')
+	else if ((flags->specifier == '%') && (!flags->nflags))
 		len = ft_putchar(flags->specifier);
 	return (len);
 }

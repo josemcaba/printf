@@ -1,34 +1,89 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrs_convert.c                                  :+:      :+:    :+:   */
+/*   ft_nbr_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 23:09:19 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:32:31 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int	padding_nbr(char *str, t_flags *flags)
+{
+	char	*s;
+	int		str_len;
+	int		pad_len;
+
+	str_len = ft_strlen(str);
+	if ((flags->dot) && (flags->precision > str_len))
+		str_len = flags->precision;
+	pad_len = str_len;
+	if (flags->width > pad_len)
+		pad_len = flags->width;
+	s = (char *)malloc(pad_len * sizeof(char) + 1);
+	if (!s)
+		return (-1);
+	ft_memset(s, ' ', pad_len);
+	if ((flags->dot) || (flags->zero))
+	 	ft_memset(s, '0', pad_len);
+	s[pad_len] = '\0';
+	if (flags->minus)
+		ft_memcpy(s, str, str_len);
+	else
+		ft_memcpy(s + pad_len - str_len, str, str_len);
+	if (ft_putstr(s) == -1)
+		pad_len = -1;
+	free(s);
+	return (pad_len);
+}
+
+char	*ft_putprfx(int nbr, t_flags *flags)
+{
+	char	*str;
+	char	*str_prfx;
+	char	*str_nbr;
+
+	str_prfx = "";
+	if ((nbr >= 0) && (flags->plus))
+		str_prfx = "+";
+	else if ((nbr >= 0) && (flags->space))
+		str_prfx = " ";
+	else if ((flags->hash) && (nbr != 0))
+	{
+		if (flags->specifier == 'X')
+			str_prfx = "0X";
+		else
+			str_prfx = "0x";
+	}
+	str_nbr = ft_itoa(nbr);
+	if (!str_nbr)
+		return (NULL);
+	str = ft_strjoin(str_prfx, str_nbr);
+	free(str_nbr);
+	if (!str)
+		return (NULL);
+	return (str);
+}
+
 int	ft_pf_nbr(va_list *args, t_flags *flags)
 {
 	int		len;
-	int		t_len;
 	int		nbr;
 	char	*str;
 
 	nbr = va_arg(*args, int);
-	len = ft_putprefix(nbr, flags);
-	str = ft_itoa(nbr);
+	str = ft_putprfx(nbr, flags);
 	if (!str)
 		return (-1);
-	t_len = ft_putstr(str);
+	if (flags->nflags)
+		len = padding_nbr(str, flags);
+	else
+		len = ft_putstr(str);
 	free(str);
-	if (t_len == -1)
-		return (-1);
-	len += t_len;
 	return (len);
 }
 
