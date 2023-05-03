@@ -49,7 +49,7 @@ fclean : clean
 
 re : fclean all
 
-#bonus : all
+bonus : all
 
 tests : all
 	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf -o a.exe

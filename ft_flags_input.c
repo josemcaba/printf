@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:14:11 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 12:14:58 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:47:54 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_init_flags(t_flags *flags)
 	flags->space = 0;
 	flags->plus = 0;
 	flags->width = 0;
+	flags->precision = 0;
 	flags->nflags = 0;
 }
 
@@ -58,5 +59,14 @@ void	ft_read_flags(t_flags *flags, char const *format)
 	while (ft_isdigit(format[i]))
 		i++;
 	flags->nflags = i;
+	if (format[i] == '.')
+	{
+		i++;
+		flags->dot = 1;
+		flags->precision = ft_atoi(&format[i]);
+		while (ft_isdigit(format[i]))
+			i++;
+		flags->nflags = i;
+	}
 	flags->specifier = format[i];
 }

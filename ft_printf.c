@@ -20,6 +20,11 @@ ssize_t	ft_putchar(char c)
 	return (len);
 }
 
+ssize_t	ft_putstr(char *s)
+{
+	return (write(1, s, ft_strlen(s)));
+}
+
 static int	ft_convert(va_list *args, t_flags *flags)
 {
 	int		len;

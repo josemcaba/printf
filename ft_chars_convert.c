@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:19:30 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 23:07:13 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:10:27 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ int	ft_pf_char(va_list *args, t_flags *flags)
 	else
 		len = ft_putchar(c);
 	return (len);
-}
-
-ssize_t	ft_putstr(char *s)
-{
-	return (write(1, s, ft_strlen(s)));
 }
 
 int	padding_str(char *str, t_flags *flags)

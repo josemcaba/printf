@@ -6,16 +6,16 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 08:36:40 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 22:15:37 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:00:12 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include "libft/libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
-# include "libft/libft.h"
 
 typedef struct s_flags
 {
@@ -27,6 +27,7 @@ typedef struct s_flags
 	int		space;
 	int		plus;
 	int		width;
+	int		precision;
 	int		nflags;
 }	t_flags;
 
