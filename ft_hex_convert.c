@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	ft_puthex(size_t n, char specifier)
+static int	ft_puthex(size_t n, char specifier, int *error_flag)
 {
 	char	*hex_base;
 	int		digit;
@@ -23,10 +23,15 @@ static int	ft_puthex(size_t n, char specifier)
 		hex_base = "0123456789ABCDEF";
 	len = 0;
 	if (n > 15)
-		len = ft_puthex((n / 16), specifier);
+		len = ft_puthex((n / 16), specifier, error_flag);
+	if (*error_flag)
+		return (-1);
 	digit = n % 16;
 	if (ft_putchar(hex_base[digit]) == -1)
+	{
+		*error_flag = 1;
 		return (-1);
+	}
 	return (len + 1);
 }
 
@@ -34,6 +39,7 @@ int	ft_pf_ptr(va_list *args, char specifier)
 {
 	size_t	nbr;
 	int		len;
+	int		error_flag;
 
 	len = 0;
 	nbr = (size_t)va_arg(*args, void *);
@@ -45,8 +51,10 @@ int	ft_pf_ptr(va_list *args, char specifier)
 	}
 	if (ft_putstr("0x") == -1)
 		return (-1);
-	len = 2 + ft_puthex(nbr, specifier);
-	return (len);
+	len = ft_puthex(nbr, specifier, &error_flag);
+	if (len == -1)
+		return (-1);
+	return (len + 2);
 }
 
 // La funcion printf() admite maximo unsigned int
@@ -54,9 +62,15 @@ int	ft_pf_hex(va_list *args, t_flags *flags)
 {
 	unsigned int	nbr;
 	int				len;
+	int				t_len;
+	int				error_flag;
 
 	nbr = va_arg(*args, unsigned int);
 	len = ft_putprefix(nbr, flags);
-	len += ft_puthex(nbr, flags->specifier);
+	error_flag = 0;
+	t_len = ft_puthex(nbr, flags->specifier, &error_flag);
+	if (t_len == -1)
+		return (-1);
+	len += t_len;
 	return (len);
 }

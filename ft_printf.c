@@ -14,7 +14,10 @@
 
 ssize_t	ft_putchar(char c)
 {
-	return (write(1, &c, 1));
+	ssize_t	len;
+
+	len = write(1, &c, 1);
+	return (len);
 }
 
 static int	ft_convert(va_list *args, t_flags *flags)

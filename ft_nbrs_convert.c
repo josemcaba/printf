@@ -32,26 +32,33 @@ int	ft_pf_nbr(va_list *args, t_flags *flags)
 	return (len);
 }
 
-static int	ft_putuint(unsigned int n)
+static int	ft_putuint(unsigned int n, int *error_flag)
 {
 	int	digit;
 	int	len;
 
 	len = 0;
 	if (n > 9)
-		len = ft_putuint((n / 10));
+		len = ft_putuint((n / 10), error_flag);
+	if (*error_flag)
+		return (-1);
 	digit = (n % 10) + '0';
 	if (ft_putchar(digit) == -1)
+	{
+		*error_flag = 1;
 		return (-1);
+	}
 	return (len + 1);
 }
 
 int	ft_pf_uint(va_list *args, t_flags *flags)
 {
-	int		len;
+	int	len;
+	int	error_flag;
 
 	len = 0;
+	error_flag = 0;
 	if (flags->specifier == 'u')
-		len = ft_putuint(va_arg(*args, unsigned int));
+		len = ft_putuint(va_arg(*args, unsigned int), &error_flag);
 	return (len);
 }
