@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 23:08:41 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/03 11:26:33 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	ft_pf_ptr(va_list *args, char specifier)
 	}
 	if (ft_putstr("0x") == -1)
 		return (-1);
+	error_flag = 0;
 	len = ft_puthex(nbr, specifier, &error_flag);
 	if (len == -1)
 		return (-1);
