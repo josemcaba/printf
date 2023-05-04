@@ -12,6 +12,20 @@
 
 #include "ft_printf.h"
 
+int padding_len(char *str, t_flags *flags)
+{
+	int	pad_len;
+	
+	pad_len = ft_strlen(str);
+	if ((flags->dot) && (flags->precision > pad_len))
+		pad_len = flags->precision;
+	if ((flags->dot) && (flags->precision < pad_len))
+		flags->precision = pad_len;	
+	if (flags->width > pad_len)
+		pad_len = flags->width;
+	return (pad_len);
+}
+
 int	padding_nbr(char *str, t_flags *flags)
 {
 	char	*s;
@@ -19,20 +33,19 @@ int	padding_nbr(char *str, t_flags *flags)
 	int		pad_len;
 
 	str_len = ft_strlen(str);
-	if ((flags->dot) && (flags->precision > str_len))
-		str_len = flags->precision;
-	pad_len = str_len;
-	if (flags->width > pad_len)
-		pad_len = flags->width;
+	pad_len = padding_len(str, flags);
 	s = (char *)malloc(pad_len * sizeof(char) + 1);
 	if (!s)
 		return (-1);
 	ft_memset(s, ' ', pad_len);
-	if ((flags->dot) || (flags->zero))
-	 	ft_memset(s, '0', pad_len);
 	s[pad_len] = '\0';
+	if (((flags->dot) || (flags->zero)) && !flags->minus)
+	 	ft_memset(s + pad_len - flags->precision, '0', flags->precision);
 	if (flags->minus)
-		ft_memcpy(s, str, str_len);
+	{
+		ft_memset(s, '0', flags->precision);
+		ft_memcpy(s + flags->precision - str_len, str, str_len);
+	}
 	else
 		ft_memcpy(s + pad_len - str_len, str, str_len);
 	if (ft_putstr(s) == -1)
