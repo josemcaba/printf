@@ -6,51 +6,76 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/04 00:32:31 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/04 23:54:28 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int padding_len(char *str, t_flags *flags)
+int	padding(char *str, t_flags *flags, char **s)
 {
 	int	pad_len;
-	
+
 	pad_len = ft_strlen(str);
-	if ((flags->dot) && (flags->precision > pad_len))
+	if (flags->dot && (flags->precision > pad_len))
 		pad_len = flags->precision;
-	if ((flags->dot) && (flags->precision < pad_len))
-		flags->precision = pad_len;	
+	if (flags->dot && flags->precision == 0)
+		pad_len = 0;
 	if (flags->width > pad_len)
 		pad_len = flags->width;
+	*s = (char *)malloc(pad_len * sizeof(char) + 1);
+	if (!*s)
+		return (-1);
+	ft_memset(*s, ' ', pad_len);
+	(*s)[pad_len] = '\0';
 	return (pad_len);
+}
+
+int	precision_nbr(char *str, t_flags *flags, char **nbr)
+{
+	int		nbr_len;
+	int		str_len;
+
+	str_len = ft_strlen(str);
+	nbr_len = str_len;
+	if ((flags->dot) && (flags->precision > str_len))
+		nbr_len = flags->precision;
+	*nbr = (char *)malloc(nbr_len * sizeof(char) + 1);
+	if (!*nbr)
+		return (-1);
+	ft_memset(*nbr, '0', nbr_len - str_len);
+	ft_memcpy(*nbr + nbr_len - str_len, str, str_len);
+	(*nbr)[nbr_len] = '\0';
+	if (flags->dot && (flags->precision == 0))
+		nbr_len = 0;
+	return (nbr_len);
 }
 
 int	padding_nbr(char *str, t_flags *flags)
 {
-	char	*s;
-	int		str_len;
+	char	*pad;
 	int		pad_len;
+	char	*nbr;
+	int		nbr_len;
 
-	str_len = ft_strlen(str);
-	pad_len = padding_len(str, flags);
-	s = (char *)malloc(pad_len * sizeof(char) + 1);
-	if (!s)
+	pad_len = padding(str, flags, &pad);
+	if (!pad)
 		return (-1);
-	ft_memset(s, ' ', pad_len);
-	s[pad_len] = '\0';
-	if (((flags->dot) || (flags->zero)) && !flags->minus)
-	 	ft_memset(s + pad_len - flags->precision, '0', flags->precision);
+	nbr_len = precision_nbr(str, flags, &nbr);
+	if (!nbr)
+		return (-1);
 	if (flags->minus)
-	{
-		ft_memset(s, '0', flags->precision);
-		ft_memcpy(s + flags->precision - str_len, str, str_len);
-	}
+		ft_memcpy(pad, nbr, nbr_len);
 	else
-		ft_memcpy(s + pad_len - str_len, str, str_len);
-	if (ft_putstr(s) == -1)
+	{
+		if (flags->zero && !flags->dot)
+			ft_memset(pad, '0', pad_len);
+		ft_memcpy(pad + pad_len - nbr_len, nbr, nbr_len);
+	}
+	if (ft_putstr(pad) == -1)
 		pad_len = -1;
-	free(s);
+	free(pad);
+	free(nbr);
 	return (pad_len);
 }
 
@@ -97,36 +122,5 @@ int	ft_pf_nbr(va_list *args, t_flags *flags)
 	else
 		len = ft_putstr(str);
 	free(str);
-	return (len);
-}
-
-static int	ft_putuint(unsigned int n, int *error_flag)
-{
-	int	digit;
-	int	len;
-
-	len = 0;
-	if (n > 9)
-		len = ft_putuint((n / 10), error_flag);
-	if (*error_flag)
-		return (-1);
-	digit = (n % 10) + '0';
-	if (ft_putchar(digit) == -1)
-	{
-		*error_flag = 1;
-		return (-1);
-	}
-	return (len + 1);
-}
-
-int	ft_pf_uint(va_list *args, t_flags *flags)
-{
-	int	len;
-	int	error_flag;
-
-	len = 0;
-	error_flag = 0;
-	if (flags->specifier == 'u')
-		len = ft_putuint(va_arg(*args, unsigned int), &error_flag);
 	return (len);
 }

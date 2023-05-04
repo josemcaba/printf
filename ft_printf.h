@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 08:36:40 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/03 23:24:12 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:58:57 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ int		ft_pf_hex(va_list *args, t_flags *flags);
 int		ft_pf_nbr(va_list *args, t_flags *flags);
 int		ft_pf_uint(va_list *args, t_flags *flags);
 int		ft_putprefix(int nbr, t_flags *flags);
+int		padding_nbr(char *str, t_flags *flags);
+char	*ft_uitoa(unsigned int n);
 
 #endif
