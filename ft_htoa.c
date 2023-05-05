@@ -14,8 +14,7 @@
 // Devuelve    : La string que represente el número.
 //               NULL si falla la reserva de memoria.
 // Descripcion : Utilizando malloc(3), genera una string que represente el
-//               valor entero recibido como argumento. Los números negativos
-//               tienen que gestionarse.
+//               valor entero recibido como argumento.
 
 #include "ft_printf.h"
 

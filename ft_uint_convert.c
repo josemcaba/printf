@@ -12,6 +12,92 @@
 
 #include "ft_printf.h"
 
+void	ft_put_minus(char *pad, char sign)
+{
+	char	*fzero;
+
+	if (sign == '-')
+	{
+		fzero = ft_strchr(pad, '0');
+		if (fzero)
+			*fzero = '-';
+	}
+}
+
+int	padding(char *str, t_flags *flags, char **s)
+{
+	int	pad_len;
+	int	sign;
+
+	sign = 0;
+	if (str[0] == '-')
+		sign = 1;
+	pad_len = ft_strlen(str);
+	if (flags->dot && (flags->precision > pad_len))
+		pad_len = flags->precision + sign;
+	if (flags->dot && (flags->precision == 0))
+		pad_len = 0;
+	if (flags->width > pad_len)
+		pad_len = flags->width;
+	*s = (char *)ft_calloc(pad_len + 1, sizeof(char));
+	if (!*s)
+		return (-1);
+	ft_memset(*s, ' ', pad_len);
+	return (pad_len);
+}
+
+int	precision_nbr(char *str, t_flags *flags, char **nbr)
+{
+	int	nbr_len;
+	int	str_len;
+	int	sign;
+
+	sign = 0;
+	if (str[0] == '-')
+		sign = 1;
+	str_len = ft_strlen(str);
+	nbr_len = str_len;
+	if ((flags->dot) && (flags->precision > str_len))
+		nbr_len = flags->precision + sign;
+	*nbr = (char *)ft_calloc(nbr_len + 1, sizeof(char));
+	if (!*nbr)
+		return (-1);
+	ft_memset(*nbr, '0', nbr_len - str_len + sign);
+	ft_memcpy(*nbr + nbr_len - str_len + sign, str + sign, str_len - sign);
+	if (flags->dot && (flags->precision == 0))
+		nbr_len = 0;
+	return (nbr_len);
+}
+
+int	padding_nbr(char *str, t_flags *flags)
+{
+	char	*pad;
+	int		pad_len;
+	char	*nbr;
+	int		nbr_len;
+
+	pad_len = padding(str, flags, &pad);
+	if (!pad)
+		return (-1);
+	nbr_len = precision_nbr(str, flags, &nbr);
+	if (!nbr)
+		return (-1);
+	if (flags->minus)
+		ft_memcpy(pad, nbr, nbr_len);
+	else
+	{
+		if (flags->zero && !flags->dot)
+			ft_memset(pad, '0', pad_len);
+		ft_memcpy(pad + pad_len - nbr_len, nbr, nbr_len);
+	}
+	ft_put_minus(pad, *str);
+	if (ft_putstr(pad) == -1)
+		pad_len = -1;
+	free(pad);
+	free(nbr);
+	return (pad_len);
+}
+
 int	ft_pf_uint(va_list *args, t_flags *flags)
 {
 	int					len;
