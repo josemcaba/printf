@@ -34,6 +34,12 @@ void	test_u (char *format, unsigned int nbr)
 	printf(" : %d\n", ft_printf(format, nbr));
 }
 
+void	test_w (char *format)
+{
+	printf(" : %d\n", printf(format));
+	printf(" : %d\n", ft_printf(format));
+}
+
 int	main(void)
 {
 	//ptr = "42Malaga";
@@ -73,6 +79,9 @@ int	main(void)
 	test_u(" %u ", 0);
 	test_u("%8.5u", 35);
 
+	test_w("%5%");
+	test_w("%-5%");
+	test_w("%-05%");
 
 	return (0);
 }

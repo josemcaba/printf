@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// Parametros  : n: el entero a convertir.
+// Parametros  : n: el entero sin signo a convertir.
 // Devuelve    : La string que represente el número.
 //               NULL si falla la reserva de memoria.
 // Descripcion : Utilizando malloc(3), genera una string que represente el
-//               valor entero recibido como argumento. Los números negativos
-//               tienen que gestionarse.
+//               valor entero sin signo recibido como argumento.
 
 #include "ft_printf.h"
 

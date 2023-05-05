@@ -48,3 +48,14 @@ int	ft_pf_char(va_list *args, t_flags *flags)
 		len = ft_putchar(c);
 	return (len);
 }
+
+int		ft_pf_char_na(t_flags *flags)
+{
+	int	len;
+
+	if (flags->width)
+		len = padding_char(flags->specifier, flags);
+	else
+		len = ft_putchar(flags->specifier);
+	return (len);
+}

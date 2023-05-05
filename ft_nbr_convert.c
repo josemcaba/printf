@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nbr_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
 /*   Updated: 2023/05/04 23:54:28 by jocaball         ###   ########.fr       */
@@ -19,7 +19,7 @@ int	padding(char *str, t_flags *flags, char **s)
 	pad_len = ft_strlen(str);
 	if (flags->dot && (flags->precision > pad_len))
 		pad_len = flags->precision;
-	if (flags->dot && flags->precision == 0)
+	if (flags->dot && (flags->precision == 0))
 		pad_len = 0;
 	if (flags->width > pad_len)
 		pad_len = flags->width;

@@ -12,6 +12,11 @@
 
 #include "ft_printf.h"
 
+ssize_t	ft_putstr(char *s)
+{
+	return (write(1, s, ft_strlen(s)));
+}
+
 int	padding_str(char *str, t_flags *flags)
 {
 	char	*s;
