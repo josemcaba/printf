@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 08:36:40 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 21:18:23 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:39:31 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		ft_putprefix(int nbr, t_flags *flags);
 int		padding_nbr(char *str, t_flags *flags);
 char	*ft_uitoa(unsigned int n);
 char	*ft_htoa(size_t n, int specifier);
-void	add_precision(char **pad, int *nbr_len, t_flags *flags);
+void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero);
+void	fill_pad_int(char **pad, char *nbr, t_flags *flags);
+int	alloc_pad_int(char **pad, char *nbr, t_flags *flags);
 
 #endif

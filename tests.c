@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 22:21:44 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:46:17 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,11 +280,23 @@ ptr = "42Malaga";
 
 	ft_printf("Ceros\n");
 
-	test_p("%p", "");
+	int len;
+	
+	len = printf("%.d, %.0d", 0, 0);
+	printf(" : %d\n", len);
+	len = ft_printf("%.d, %.0d", 0, 0);
+	printf(" : %d\n", len);
 
-	test_d("%d", -1);
+	len = printf("p30 %.0u\n", 100);
+	printf(" : %d\n", len);
+	len = ft_printf("p30 %.0u\n", 100);
+	printf(" : %d\n", len);
 
-
+	len = printf("%013.i" ,-1488496170);
+	printf(" : %d\n", len);
+	len = ft_printf("%013.i" ,-1488496170);
+	printf(" : %d\n", len);
+	
 	return (0);
 }
 

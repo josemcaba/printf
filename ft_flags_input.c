@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:14:11 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 20:45:51 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:04:40 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_fill_flags(t_flags *flags, char flag)
 {
 	if (flag == '-')
 		flags->minus = 1;
-	else if (flag == '0')
+	else if ((flag == '0') && !flags->dot)
 		flags->zero = 1;
 	else if (flag == '.')
 		flags->dot = 1;

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/05 00:53:00 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:37:44 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,48 @@ int	padding_nbr(char *str, t_flags *flags)
 
 int	ft_pf_uint(va_list *args, t_flags *flags)
 {
-	int					len;
-	unsigned int		nbr;
-	char				*str;
+	size_t	nbr;
+	int				len;
+	char			*str_nbr;
+	char			*pad;
 
 	nbr = va_arg(*args, unsigned int);
-	str = ft_uitoa(nbr);
-	if (!str)
+	str_nbr = ft_uitoa(nbr);
+	if (!str_nbr)
 		return (-1);
-	if (flags->nflags)
-		len = padding_nbr(str, flags);
-	else
-		len = ft_putstr(str);
-	free(str);
+//	if (flags->nflags)
+//	{
+		len = alloc_pad_int(&pad, str_nbr, flags);
+		if (len != -1)
+		{
+			fill_pad_int(&pad, str_nbr, flags);
+			len = ft_putstr(pad);
+			free(pad);
+		}
+//	}
+//	else
+//		len = ft_putstr(str_nbr);
+	free(str_nbr);
 	return (len);
 }
+
+// int	ft_pf_uint(va_list *args, t_flags *flags)
+// {
+// 	int					len;
+// 	unsigned int		nbr;
+// 	char				*str;
+
+// 	nbr = va_arg(*args, unsigned int);
+// 	str = ft_uitoa(nbr);
+// 	if (!str)
+// 		return (-1);
+// 	if (flags->nflags)
+// 		len = padding_nbr(str, flags);
+// 	else
+// 		len = ft_putstr(str);
+// 	free(str);
+// 	return (len);
+// }
 
 // static int	ft_putuint(unsigned int n, int *error_flag)
 // {

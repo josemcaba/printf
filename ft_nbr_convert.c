@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 22:37:55 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:26:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	alloc_pad_int(char **pad, char *nbr, t_flags *flags)
 	no_zero = ft_strncmp(nbr, "0", pad_len);
 	if (flags->dot && (flags->precision > pad_len))
 		pad_len = flags->precision;
+	if (flags->dot && (flags->precision == 0) && !no_zero)
+		pad_len--;
 	if (flags->negative && no_zero)
 		pad_len++;
 	if (flags->space && !flags->negative)
@@ -134,16 +136,19 @@ void	fill_pad_int(char **pad, char *nbr, t_flags *flags)
 	int	no_zero;
 
 	pad_len = ft_strlen(*pad);
-	nbr_len = ft_strlen(nbr) - flags->negative;
-	no_zero = ft_strncmp(nbr, "0", nbr_len);
-	ft_memcpy(*pad, nbr + flags->negative, nbr_len);
-	add_precision(&(*pad), &nbr_len, flags);
-	add_prefix_int(&(*pad), &nbr_len, flags, no_zero);
-	if (!flags->minus)
+	if (pad_len)
 	{
-		ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);
-		ft_memset(*pad, ' ', pad_len - nbr_len);
-		add_width_int(&(*pad), nbr_len, flags);
+		nbr_len = ft_strlen(nbr) - flags->negative;
+		no_zero = ft_strncmp(nbr, "0", nbr_len);
+		ft_memcpy(*pad, nbr + flags->negative, nbr_len);
+		add_precision(&(*pad), &nbr_len, flags, !no_zero);
+		add_prefix_int(&(*pad), &nbr_len, flags, no_zero);
+		if (!flags->minus)
+		{
+			ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);
+			ft_memset(*pad, ' ', pad_len - nbr_len);
+			add_width_int(&(*pad), nbr_len, flags);
+		}
 	}
 }
 
