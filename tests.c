@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/05 00:49:03 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:01:07 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,16 @@ void	test_u (char *format, unsigned int nbr)
 	printf(" : %d\n", ft_printf(format, nbr));
 }
 
-void	test_w (char *format)
-{
-	printf(" : %d\n", printf(format));
-	printf(" : %d\n", ft_printf(format));
-}
+// void	test_w (char *format)
+// {
+// 	printf(" : %d\n", printf(format));
+// 	printf(" : %d\n", ft_printf(format));
+// }
 
 int	main(void)
 {
+	char *ptr;
+	
 	atexit(ft_leaks);
 // 	test_d("%d", 1523589012);
 // 	test_d("%d", -354316);
@@ -90,11 +92,20 @@ int	main(void)
 // 	test_u(" %u ", 0);
 // 	test_u("%8.5u", 35);
 
-	test_w("%5%");
-	test_w("%-5%");
-	test_w("%-05%");
-	test_w("%-05%hola");
-
+	// test_w("%5%");
+	// test_w("%-5%");
+	// test_w("%-05%");
+	// test_w("%-05%hola");
+	printf(" : %d\n", printf("%5%"));
+	printf(" : %d\n", ft_printf("%5%"));
+	printf(" : %d\n", printf("%-5%"));
+	printf(" : %d\n", ft_printf("%-5%"));
+	printf(" : %d\n", printf("%-05%"));
+	printf(" : %d\n", ft_printf("%-05%"));
+	printf(" : %d\n", printf("%-05%hola"));
+	printf(" : %d\n", ft_printf("%5%hola"));
+	
+	
 ft_printf("\nNEGATIVOS\n\n");
 
 	test_d("%.6d", -3);
@@ -107,163 +118,169 @@ ft_printf("\nNEGATIVOS\n\n");
 	test_d("%03.7d", -2375);
 	test_d("%10.2d", -2375);
 
-// ft_printf("\nHEXADECIMALES\n\n");
+ft_printf("\nHEXADECIMALES\n\n");
 
-// 	test_h("%x", 0);
-// 	test_h("%X", 0);
-// 	test_h("%x", 0x0);
-// 	test_h("%X", 0x0);
-// 	test_h("%x", 0x41AF5C);
-// 	test_h("%X", 0x41af5c);
-// 	test_h("%x", 0xffffffff);
-// 	test_h("%X", 0xffffffff);
+	test_h("%x", 0);
+	test_h("%X", 0);
+	test_h("%x", 0x0);
+	test_h("%X", 0x0);
+	test_h("%x", 0x41AF5C);
+	test_h("%X", 0x41af5c);
+	test_h("%x", 0xffffffff);
+	test_h("%X", 0xffffffff);
 
-// ft_printf("\nBonus 2 (Hexa)\n\n");
+ft_printf("\nBonus 2 (Hexa)\n\n");
 
-// 	ft_printf("\n\"#\"\n");
+	ft_printf("\n\"#\"\n");
 
-// 	test_h("%#x", 0);
-// 	test_h("%#X", 0);
-// 	test_h("%#x", 0x41AF5C);
-// 	test_h("%#X", 0x41af5c);
-// 	test_h("%#x", 0xffffffff);
-// 	test_h("%#X", 0xffffffff);
+	test_h("%#x", 0);
+	test_h("%#X", 0);
+	test_h("%#x", 0x41AF5C);
+	test_h("%#X", 0x41af5c);
+	test_h("%#x", 0xffffffff);
+	test_h("%#X", 0xffffffff);
 
-// 	ft_printf("\n\" \"\n");
+	ft_printf("\n\" \"\n");
 
-// 	test_h("% x", 0);
-// 	test_h("% X", 0);
-// 	test_h("% x", 0x41AF5C);
-// 	test_h("% X", 0x41af5c);
-// 	test_h("% x", 0xffffffff);
-// 	test_h("% X", 0xffffffff);
+	test_h("% x", 0);
+	test_h("% X", 0);
+	test_h("% x", 0x41AF5C);
+	test_h("% X", 0x41af5c);
+	test_h("% x", 0xffffffff);
+	test_h("% X", 0xffffffff);
 
-// 	ft_printf("\n\"+\"\n");
+	ft_printf("\n\"+\"\n");
 
-// 	test_h("%+x", 0);
-// 	test_h("%+X", 0);
-// 	test_h("%+x", 0x41AF5C);
-// 	test_h("%+X", 0x41af5c);
-// 	test_h("%+x", 0xffffffff);
-// 	test_h("%+X", 0xffffffff);
+	test_h("%+x", 0);
+	test_h("%+X", 0);
+	test_h("%+x", 0x41AF5C);
+	test_h("%+X", 0x41af5c);
+	test_h("%+x", 0xffffffff);
+	test_h("%+X", 0xffffffff);
 
-// 	ft_printf("\n\"# Width\"\n");
+	ft_printf("\n\"# Width\"\n");
 
-// 	test_h("%#1x", 0);
-// 	test_h("%#5X", 0);
-// 	test_h("%#3x", 0x41AF5C);
-// 	test_h("%#20X", 0x41af5c);
-// 	test_h("%#3x", 0xffffffff);
-// 	test_h("%#20X", 0xffffffff);
+	test_h("%#1x", 0);
+	test_h("%#5X", 0);
+	test_h("%#3x", 0x41AF5C);
+	test_h("%#20X", 0x41af5c);
+	test_h("%#3x", 0xffffffff);
+	test_h("%#20X", 0xffffffff);
 
-// 	ft_printf("\n\"  Width\"\n");
+	ft_printf("\n\"  Width\"\n");
 
-// 	test_h("% 1x", 0);
-// 	test_h("% 5X", 0);
-// 	test_h("% 3x", 0x41AF5C);
-// 	test_h("% 20X", 0x41af5c);
-// 	test_h("% 3x", 0xffffffff);
-// 	test_h("% 20X", 0xffffffff);
+	test_h("% 1x", 0);
+	test_h("% 5X", 0);
+	test_h("% 3x", 0x41AF5C);
+	test_h("% 20X", 0x41af5c);
+	test_h("% 3x", 0xffffffff);
+	test_h("% 20X", 0xffffffff);
 
-// 	ft_printf("\n\"+ Width\"\n");
+	ft_printf("\n\"+ Width\"\n");
 
-// 	test_h("%+1x", 0);
-// 	test_h("%+5X", 0);
-// 	test_h("%+3x", 0x41AF5C);
-// 	test_h("%+20X", 0x41af5c);
-// 	test_h("%+3x", 0xffffffff);
-// 	test_h("%+20X", 0xffffffff);
+	test_h("%+1x", 0);
+	test_h("%+5X", 0);
+	test_h("%+3x", 0x41AF5C);
+	test_h("%+20X", 0x41af5c);
+	test_h("%+3x", 0xffffffff);
+	test_h("%+20X", 0xffffffff);
 
-// ft_printf("\nBonus 1 (Hexa)\n\n");
+ft_printf("\nBonus 1 (Hexa)\n\n");
 
-//  	ft_printf("\n\"-\"\n");
-// 	test_h("%-0x", 0);
-// 	test_h("%-5X", 0);
-// 	test_h("%-3x", 0x41AF5C);
-// 	test_h("%-20X", 0x41af5c);
-// 	test_h("%-3x", 0xffffffff);
-// 	test_h("%-20X", 0xffffffff);
+ 	ft_printf("\n\"-\"\n");
+	test_h("%-0x", 0);
+	test_h("%-5X", 0);
+	test_h("%-3x", 0x41AF5C);
+	test_h("%-20X", 0x41af5c);
+	test_h("%-3x", 0xffffffff);
+	test_h("%-20X", 0xffffffff);
 
-//  	ft_printf("\n\"#-\"\n");
-// 	test_h("%#-0x", 0);
-// 	test_h("%#-5X", 0);
-// 	test_h("%#-3x", 0x41AF5C);
-// 	test_h("%#-20X", 0x41af5c);
-// 	test_h("%#-3x", 0xffffffff);
-// 	test_h("%#-20X", 0xffffffff);
+ 	ft_printf("\n\"#-\"\n");
+	test_h("%#-0x", 0);
+	test_h("%#-5X", 0);
+	test_h("%#-3x", 0x41AF5C);
+	test_h("%#-20X", 0x41af5c);
+	test_h("%#-3x", 0xffffffff);
+	test_h("%#-20X", 0xffffffff);
 
 
-// ft_printf("\nBonus 1 (Hexa)\n\n");
+ft_printf("\nBonus 1 (Hexa)\n\n");
 
-//  	ft_printf("\n\"0\"\n");
-// 	test_h("%0x", 0);
-// 	test_h("%05X", 0);
-// 	test_h("%03x", 0x41AF5C);
-// 	test_h("%020X", 0x41af5c);
-// 	test_h("%03x", 0xffffffff);
-// 	test_h("%020X", 0xffffffff);
+ 	ft_printf("\n\"0\"\n");
+	test_h("%0x", 0);
+	test_h("%05X", 0);
+	test_h("%03x", 0x41AF5C);
+	test_h("%020X", 0x41af5c);
+	test_h("%03x", 0xffffffff);
+	test_h("%020X", 0xffffffff);
 
-//  	ft_printf("\n\"#0\"\n");
-// 	test_h("%#00x", 0);
-// 	test_h("%#05X", 0);
-// 	test_h("%#03x", 0x41AF5C);
-// 	test_h("%#020X", 0x41af5c);
-// 	test_h("%#03x", 0xffffffff);
-// 	test_h("%#020X", 0xffffffff);
+ 	ft_printf("\n\"#0\"\n");
+	test_h("%#00x", 0);
+	test_h("%#05X", 0);
+	test_h("%#03x", 0x41AF5C);
+	test_h("%#020X", 0x41af5c);
+	test_h("%#03x", 0xffffffff);
+	test_h("%#020X", 0xffffffff);
 
-//  	ft_printf("\n\".\"\n");
-// 	test_h("%.x", 0);
-// 	test_h("%.5X", 0);
-// 	test_h("%.3x", 0x41AF5C);
-// 	test_h("%.20X", 0x41af5c);
-// 	test_h("%.3x", 0xffffffff);
-// 	test_h("%.20X", 0xffffffff);
+ 	ft_printf("\n\".\"\n");
+	test_h("%.x", 0);
+	test_h("%.5X", 0);
+	test_h("%.3x", 0x41AF5C);
+	test_h("%.20X", 0x41af5c);
+	test_h("%.3x", 0xffffffff);
+	test_h("%.20X", 0xffffffff);
 
-//  	ft_printf("\n\"#.\"\n");
-// 	test_h("%#.0x", 0);
-// 	test_h("%#.5X", 0);
-// 	test_h("%#.3x", 0x41AF5C);
-// 	test_h("%#.20X", 0x41af5c);
-// 	test_h("%#.3x", 0xffffffff);
-// 	test_h("%#.20X", 0xffffffff);
+ 	ft_printf("\n\"#.\"\n");
+	test_h("%#.0x", 0);
+	test_h("%#.5X", 0);
+	test_h("%#.3x", 0x41AF5C);
+	test_h("%#.20X", 0x41af5c);
+	test_h("%#.3x", 0xffffffff);
+	test_h("%#.20X", 0xffffffff);
 
-//  	test_h("%#-x", 0);
-//  	test_h("%#-X", 0);
-// 	test_h("%#-x", 0x0);
-//  	test_h("%#-X", 0x0);
-//  	test_h("%#-x", 0x41AF5C);
-//  	test_h("%#-X", 0x41af5c);
-//  	test_h("%#-x", 0xffffffff);
-//  	test_h("%#-X", 0xffffffff);
+ 	test_h("%#-x", 0);
+ 	test_h("%#-X", 0);
+	test_h("%#-x", 0x0);
+ 	test_h("%#-X", 0x0);
+ 	test_h("%#-x", 0x41AF5C);
+ 	test_h("%#-X", 0x41af5c);
+ 	test_h("%#-x", 0xffffffff);
+ 	test_h("%#-X", 0xffffffff);
 
-// 	test_h("%x", 1234);
-// 	test_h("%-7X", 1235);
-// 	test_h("%-2x", 1236);
-// 	test_h("%07X", 0xdef);
-// 	test_h("%02x", 1238);
-// 	test_h("%.7X", 1239);
-// 	test_h("%.2x", 1240);
-// 	test_h("%7X", 1241);
-// 	test_h("%2x", 1242);
-// 	test_h("%#X", 0xabc);
-// 	test_h("%#x", 1244);
-// 	test_h("%#-7X", 1245);
-// 	test_h("%#-2x", 1246);
-// 	test_h("%#012X", 0x8001);
-// 	test_h("%#02x", 1248);
-// 	test_h("%#.7X", 1249);
-// 	test_h("%#.2x", 1250);
-// 	test_h("%#7X", 0x789);
-// 	test_h("%#2x", 1252);
-// 	test_h("%#15.8x", 0x1234);
-// 	test_h("%#015x", 0x1235);
-// 	test_h("%#15.8x", 0x1236);
-// 	test_h("%#3.8x", 0x1237);
-// 	test_h("%#03.8x", 0x1238);
-// 	test_h("%.0x", 0x7890);
+	test_h("%x", 1234);
+	test_h("%-7X", 1235);
+	test_h("%-2x", 1236);
+	test_h("%07X", 0xdef);
+	test_h("%02x", 1238);
+	test_h("%.7X", 1239);
+	test_h("%.2x", 1240);
+	test_h("%7X", 1241);
+	test_h("%2x", 1242);
+	test_h("%#X", 0xabc);
+	test_h("%#x", 1244);
+	test_h("%#-7X", 1245);
+	test_h("%#-2x", 1246);
+	test_h("%#012X", 0x8001);
+	test_h("%#02x", 1248);
+	test_h("%#.7X", 1249);
+	test_h("%#.2x", 1250);
+	test_h("%#7X", 0x789);
+	test_h("%#2x", 1252);
+	test_h("%#15.8x", 0x1234);
+	test_h("%#015x", 0x1235);
+	test_h("%#15.8x", 0x1236);
+	test_h("%#3.8x", 0x1237);
+	test_h("%#03.8x", 0x1238);
+	test_h("%.0x", 0x7890);
 
-//ptr = "42Malaga";	
-// 	test_p("%p", ptr);
+ptr = "42Malaga";	
+//	test_p("%p", ptr);
+	printf(" : %d\n", printf(" %#x ", 0xffffffff));
+	printf(" : %d\n", ft_printf(" %p ", -1));
+
+	ft_printf("Ceros\n");
+
+	test_p("%p", "");
 
 
 	return (0);

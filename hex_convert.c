@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hex_convert.c                                   :+:      :+:    :+:   */
+/*   hex_convert.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 11:26:33 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:07:45 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	alloc_pad(char **pad, char *nbr, t_flags *flags)
 	no_zero = ft_strncmp(nbr, "0", pad_len);
 	if (flags->dot && (flags->precision > pad_len))
 		pad_len = flags->precision;
-	if (flags->hash && no_zero)
+	if ((flags->hash && no_zero) || (flags->specifier == 'p'))
 		pad_len += 2;
 	if (flags->width > pad_len)
 		pad_len = flags->width;
@@ -109,7 +109,7 @@ void	add_prefix(char **pad, int *nbr_len, t_flags *flags,  int no_zero)
 	prefix = "0x";
 	if (flags->specifier == 'X')
 		prefix = "0X";	
-	if (flags->hash && no_zero)
+	if ((flags->hash && no_zero) || (flags->specifier == 'p'))
 	{
 		ft_memmove(&(*pad)[2], *pad, *nbr_len);
 		ft_memcpy(*pad, prefix, 2);
@@ -171,9 +171,9 @@ size_t	read_hex_nbr(va_list *args, t_flags *flags)
 {
 	if (flags->specifier == 'p')
 	{
-		flags->specifier = 'x';
-		flags->hash = 1;
-		flags->nflags += 1;
+//		flags->specifier = 'x';
+//		flags->hash = 1;
+//		flags->nflags += 1;
 		return ((size_t)va_arg(*args, void *));
 	}
 	else
