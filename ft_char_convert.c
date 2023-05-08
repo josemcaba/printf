@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chars_convert.c                                 :+:      :+:    :+:   */
+/*   ft_char_convert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:19:30 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/03 14:10:27 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:20:12 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	padding_char(unsigned char c, t_flags *flags)
 {
 	int	len;
+	int	cc;
 
+	cc = ' ';
+	if (flags->zero) 
+		cc = '0';
 	len = flags->width;
 	if (flags->minus)
 	{
@@ -28,7 +32,7 @@ int	padding_char(unsigned char c, t_flags *flags)
 	else
 	{
 		while (--flags->width)
-			if (ft_putchar(' ') == -1)
+			if (ft_putchar(cc) == -1)
 				return (-1);
 		if (ft_putchar(c) == -1)
 			return (-1);

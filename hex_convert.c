@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 00:02:58 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 00:56:22 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,11 @@ void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero)
 		*nbr_len += offset;
 	}
 	if (flags->dot && (flags->precision == 0) && zero)
+	{
 		*ft_strchr(*pad, '0') = ' ';
+		if (ft_strlen(*pad) > 1)
+			*nbr_len = 0;
+	}
 }
 
 void	add_width(char **pad, int nbr_len, t_flags *flags)

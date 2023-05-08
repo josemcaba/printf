@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 23:46:17 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:21:16 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,40 +57,40 @@ int	main(void)
 	char *ptr;
 	
 	atexit(ft_leaks);
-// 	test_d("%d", 1523589012);
-// 	test_d("%d", -354316);
-// 	test_d("%-7d", 1234);
-// 	test_d("%-2d", 1254);
-// 	test_d("%07d", 1264);
-// 	test_d("%03d", 1235);
-// 	test_d("%.7d", 1236);
-// 	test_d("%.2d", 1237);
-// 	test_d("%7d", 1238);
-// 	test_d("%2d", 1239);
-// 	test_d("% 10d", 1241);
-// 	test_d("%+10d", 1242);
-// 	test_d("%.5d", 2);
-// 	test_d("%.3d", 0);
-// 	test_d("%8.5d", 35);
-// 	test_d("%8.5d", 0);
-// 	test_d("%8.3d", 8375);
-// 	test_d("%-8.5d", 34);
-// 	test_d("%3.7d", 3267);
-// 	test_d("%-8.5d", 0);
-// 	test_d("%-8.3d", 8376);
-// 	test_d("%-3.7d", 3268);
-// 	test_d("%08.5d", 34);
-// 	test_d("%08.5d", 0);
-// 	test_d("%-1d", 0);
-// 	test_d("%-3d", 1);
-// 	test_d("%.0d", 0);
-// 	test_d("%.d", 0);
-// 	test_d("%5.0d", 0);
-// 	test_d("%5.d", 0);
+	test_d("%d", 1523589012);
+	test_d("%d", -354316);
+	test_d("%-7d", 1234);
+	test_d("%-2d", 1254);
+	test_d("%07d", 1264);
+	test_d("%03d", 1235);
+	test_d("%.7d", 1236);
+	test_d("%.2d", 1237);
+	test_d("%7d", 1238);
+	test_d("%2d", 1239);
+	test_d("% 10d", 1241);
+	test_d("%+10d", 1242);
+	test_d("%.5d", 2);
+	test_d("%.3d", 0);
+	test_d("%8.5d", 35);
+	test_d("%8.5d", 0);
+	test_d("%8.3d", 8375);
+	test_d("%-8.5d", 34);
+	test_d("%3.7d", 3267);
+	test_d("%-8.5d", 0);
+	test_d("%-8.3d", 8376);
+	test_d("%-3.7d", 3268);
+	test_d("%08.5d", 34);
+	test_d("%08.5d", 0);
+	test_d("%-1d", 0);
+	test_d("%-3d", 1);
+	test_d("%.0d", 0);
+	test_d("%.d", 0);
+	test_d("%5.0d", 0);
+	test_d("%5.d", 0);
 
-// 	test_u("%u", -10);
-// 	test_u(" %u ", 0);
-// 	test_u("%8.5u", 35);
+	test_u("%u", -10);
+	test_u(" %u ", 0);
+	test_u("%8.5u", 35);
 
 	// test_w("%5%");
 	// test_w("%-5%");
@@ -295,6 +295,22 @@ ptr = "42Malaga";
 	len = printf("%013.i" ,-1488496170);
 	printf(" : %d\n", len);
 	len = ft_printf("%013.i" ,-1488496170);
+	printf(" : %d\n", len);
+	
+	
+	len = printf("%+.i, %+.i, %+.i, %+.i, %+.i, %+.i, %+.i, %+.i", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf(" : %d\n", len);
+	len = ft_printf("%+.i, %+.i, %+.i, %+.i, %+.i, %+.i, %+.i, %+.i", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf(" : %d\n", len);
+
+	len = printf("%+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf(" : %d\n", len);
+	len = ft_printf("%+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d, %+5.d", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	printf(" : %d\n", len);
+
+	len = printf("% -05%hola\n");
+	printf(" : %d\n", len);
+	len = ft_printf("% -05%hola\n");
 	printf(" : %d\n", len);
 	
 	return (0);

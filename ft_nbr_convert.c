@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 00:00:12 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 00:35:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,23 @@ void	add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 		ft_memcpy(*pad, "-", 1);
 		*nbr_len += 1;
 	}
-	(void)no_zero;
 	if (flags->space && !flags->negative)
 	{
-		ft_memmove(&(*pad)[1], *pad, *nbr_len);
+		if (ft_strlen(*pad) > 1)
+		{
+			ft_memmove(&(*pad)[1], *pad, *nbr_len);
+			*nbr_len += 1;
+		}
 		ft_memcpy(*pad, " ", 1);
-		*nbr_len += 1;
 	}
 	if (flags->plus && !flags->negative)
 	{
-		ft_memmove(&(*pad)[1], *pad, *nbr_len);
+		if (ft_strlen(*pad) > 1)
+		{
+			ft_memmove(&(*pad)[1], *pad, *nbr_len);
+			*nbr_len += 1;
+		}
 		ft_memcpy(*pad, "+", 1);
-		*nbr_len += 1;
 	}
 }
 
