@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 14:07:45 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:44:56 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	alloc_pad(char **pad, char *nbr, t_flags *flags)
 	int	pad_len;
 	int no_zero;
 
+	
 	pad_len = ft_strlen(nbr);
 	no_zero = ft_strncmp(nbr, "0", pad_len);
 	if (flags->dot && (flags->precision > pad_len))

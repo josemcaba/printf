@@ -51,11 +51,11 @@ fclean : clean
 
 re : fclean all
 
-bonus : all
-	$(MAKE_LIBFT) bonus
-	@cp $(LIBFT) $(NAME)
-	@$(LIB) $(NAME) $(OBJ)
-	@echo "-------> Library $(NAME) has been created including bonus functions"
+#bonus : all
+#	$(MAKE_LIBFT) bonus
+#	@cp $(LIBFT) $(NAME)
+#	@$(LIB) $(NAME) $(OBJ)
+#	@echo "-------> Library $(NAME) has been created including bonus functions"
 
 tests : all
 	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf -o a.exe

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:14:11 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/03 20:55:23 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:45:51 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_init_flags(t_flags *flags)
 	flags->width = 0;
 	flags->precision = 0;
 	flags->nflags = 0;
+	flags->negative = 0;
 }
 
 static void	ft_fill_flags(t_flags *flags, char flag)

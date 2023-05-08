@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 14:01:07 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:21:44 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,8 @@ ptr = "42Malaga";
 	ft_printf("Ceros\n");
 
 	test_p("%p", "");
+
+	test_d("%d", -1);
 
 
 	return (0);
