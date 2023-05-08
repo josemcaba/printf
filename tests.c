@@ -3,337 +3,269 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 12:38:11 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/03 12:38:13 by jocaball         ###   ########.fr       */
+/*   Created: 2023/04/27 08:30:55 by jocaball          #+#    #+#             */
+/*   Updated: 2023/05/05 00:49:03 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
+
+// #define INT_MIN	0x80000000
+// #define INT_MAX 0x7fffffff
 
 void	ft_leaks(void)
 {
 	system("leaks -q a.exe");
 }
 
-int main(void) 
+void	test_d (char *format, int nbr)
 {
-	int		count;
-	char	*ptr = "Puntero";
-
-	atexit(ft_leaks);
-	count = printf("Hola mundo!--");
-	printf("%d\n", count-2);
-	count = ft_printf("Hola mundo!--");
-	ft_printf("%d\n", count-2);	
-
-	count = printf("Caracter:%c--", 'M');
-	printf("%d\n", count-2);
-	count = ft_printf("Caracter:%c--", 'M');
-	ft_printf("%d\n", count-2);		
-
-	count = printf("Cadena:%s--", "");
-	printf("%d\n", count-2);
-	count = ft_printf("Cadena:%s--", "");
-	ft_printf("%d\n", count-2);	
-
-	count = printf("Cadena:%s--", "42 Malaga");
-	printf("%d\n", count-2);
-	count = ft_printf("Cadena:%s--", "42 Malaga");
-	ft_printf("%d\n", count-2);	
-
-	count = printf("%s:%p--", ptr, ptr);
-	printf("%d\n", count-2);
-	count = ft_printf("%s:%p--", ptr, ptr);
-	ft_printf("%d\n", count-2);
-
-	ptr = 0;
-	count = printf("%s:%p--", ptr, ptr);
-	printf("%d\n", count-2);
-	count = ft_printf("%s:%p--", ptr, ptr);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Decimal:%d--", 1523589012);
-	printf("%d\n", count-2);
-	count = ft_printf("Decimal:%d--", 1523589012);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Decimal:%d--", -152358);
-	printf("%d\n", count-2);
-	count = ft_printf("Decimal:%d--", -152358);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Entero:%i--", 152358);
-	printf("%d\n", count-2);
-	count = ft_printf("Entero:%i--", 152358);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Entero:%i--", -152358);
-	printf("%d\n", count-2);
-	count = ft_printf("Entero:%i--", -152358);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Sin signo:%u--", -1);
-	printf("%d\n", count-2);
-	count = ft_printf("Sin signo:%u--", -1);
-	ft_printf("%d\n", count-2);
-
-	count = printf("hexadecimal:%x--", 39856);
-	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%x--", 39856);
-	ft_printf("%d\n", count-2);
-
-	count = printf("hexadecimal:%x--", 0);
-	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%x--", 0);
-	ft_printf("%d\n", count-2);
-
-	count = printf("HEXADECIMAL:%X--", -521);
-	printf("%d\n", count-2);
-	count = ft_printf("HEXADECIMAL:%X--", -521);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Porcentaje:%%--");
-	printf("%d\n", count-2);
-	count = ft_printf("Porcentaje:%%--");
-	ft_printf("%d\n", count-2);
-
-	ft_printf("\n*****  BONUS 2 *****\n\n");
-
-	count = printf("hexadecimal:%#x--", 39856);
-	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%#x--", 39856);
-	ft_printf("%d\n", count-2);
-
-	count = printf("hexadecimal:%#x--", 0);
-	printf("%d\n", count-2);
-	count = ft_printf("hexadecimal:%#x--", 0);
-	ft_printf("%d\n", count-2);
-
-	count = printf("HEXADECIMAL:%#X--", -521);
-	printf("%d\n", count-2);
-	count = ft_printf("HEXADECIMAL:%#X--", -521);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Decimal:%+d--", 1523589012);
-	printf("%d\n", count-2);
-	count = ft_printf("Decimal:%+d--", 1523589012);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Decimal:%+d--", -152358);
-	printf("%d\n", count-2);
-	count = ft_printf("Decimal:%+d--", -152358);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Entero:% i--", 152358);
-	printf("%d\n", count-2);
-	count = ft_printf("Entero:% i--", 152358);
-	ft_printf("%d\n", count-2);
-
-	count = printf("Entero:% i--", -152358);
-	printf("%d\n", count-2);
-	count = ft_printf("Entero:% i--", -152358);
-	ft_printf("%d\n", count-2);
-
-	ft_printf("\n*****  BONUS 1 (c) *****\n\n");
-
-	count = printf("Nada  : %c--", 'A');
-	printf("%d\n", count-2);
-	count = printf("Minus : %-7c--", 'A');
-	printf("%d\n", count-2);
-	count = printf("Minus : %-2c--", 'A');
-	printf("%d\n", count-2);
-	count = printf("Minus : %-c--", 'A');
-	printf("%d\n", count-2);
-//	count = printf("Zero  : %07c--", 'A');
-//	printf("%d\n", count-2);
-//	count = printf("Zero  : %02c--", 'A');	
-//	printf("%d\n", count-2);
-//	count = printf("Dot   : %.7c--", 'A');
-//	printf("%d\n", count-2);
-//	count = printf("Dot   : %.2c--", 'A');
-//	printf("%d\n", count-2);
-	count = printf("Width : %7c--", 'A');
-	printf("%d\n", count-2);
-	count = printf("Width : %2c--", 'A');
-	printf("%d\n", count-2);
-//	count = printf("Hash  : %#c--", 'A');
-//	printf("%d\n", count-2);
-//	count = printf("Space : % c--", 'A');
-//	printf("%d\n", count-2);
-//	count = printf("Plus  : %+c--", 'A');
-//	printf("%d\n", count-2);
-	ft_printf("\n");
-	count = ft_printf("Nada  : %c--", 'A');
-	printf("%d\n", count-2);
-	count = ft_printf("Minus : %-7c--", 'A');
-	printf("%d\n", count-2);
-	count = ft_printf("Minus : %-2c--", 'A');
-	printf("%d\n", count-2);
-	count = ft_printf("Minus : %-c--", 'A');
-	printf("%d\n", count-2);
-//	count = ft_printf("Zero  : %07c--", 'A');
-//	printf("%d\n", count-2);
-//	count = ft_printf("Zero  : %02c--", 'A');	
-//	printf("%d\n", count-2);
-//	count = ft_printf("Dot   : %.7c--", 'A');
-//	printf("%d\n", count-2);
-//	count = ft_printf("Dot   : %.2c--", 'A');
-//	printf("%d\n", count-2);
-	count = ft_printf("Width : %7c--", 'A');
-	printf("%d\n", count-2);
-	count = ft_printf("Width : %2c--", 'A');
-	printf("%d\n", count-2);
-//	count = printf("Hash  : %#c--", 'A');
-//	printf("%d\n", count-2);
-//	count = printf("Space : % c--", 'A');
-//	printf("%d\n", count-2);
-//	count = printf("Plus  : %+c--", 'A');
-//	printf("%d\n", count-2);
-
-	ft_printf("\n*****  BONUS 1 (s) *****\n\n");
-
-	count = printf("Nada  : %s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Minus : %-7s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Minus : %-2s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Minus : %-s--", "abcd");
-	printf("%d\n", count-2);
-//	count = printf("Zero  : %07s--\n", "abcd");
-//	count = printf("Zero  : %02s--\n", "abcd");	
-	count = printf("Dot   : %.7s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Dot   : %.2s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Dot   : %.s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Width : %7s--", "abcd");
-	printf("%d\n", count-2);
-	count = printf("Width : %2s--", "abcd");
-	printf("%d\n", count-2);
-//	count = printf("Hash  : %#s--\n", "abcd");
-//	count = printf("Space : % s--\n", "abcd");
-//	count = printf("Plus  : %+s--\n", "abcd");
-	ft_printf("\n");
-	count = ft_printf("Nada  : %s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Minus : %-7s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Minus : %-2s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Minus : %-s--", "abcd");
-	printf("%d\n", count-2);
-//	count = ft_printf("Zero  : %07s--\n", "abcd");
-//	count = ft_printf("Zero  : %02s--\n", "abcd");	
-	count = ft_printf("Dot   : %.7s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Dot   : %.2s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Dot   : %.s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Width : %7s--", "abcd");
-	printf("%d\n", count-2);
-	count = ft_printf("Width : %2s--", "abcd");
-	printf("%d\n", count-2);
-//	count = ft_printf("Hash  : %#s--\n", "abcd");
-//	count = ft_printf("Space : % s--\n", "abcd");
-//	count = ft_printf("Plus  : %+s--\n", "abcd");
-
-	ft_printf("\n*****  BONUS 1 (p) *****\n\n");
-
-	count = printf("Nada  : %p--\n", "abcd");
-	count = printf("Minus : %-18p--\n", "abcd");
-	count = printf("Minus : %-2p--\n", "abcd");
-// 	count = printf("Zero  : %07p--\n", "abcd");
-// 	count = printf("Zero  : %02p--\n", "abcd");	
-// 	count = printf("Dot   : %.7p--\n", "abcd");
-//	count = printf("Dot   : %.2p--\n", "abcd");
-	count = printf("Width : %18p--\n", "abcd");
-	count = printf("Width : %2p--\n", "abcd");
-//	count = printf("Hash  : %#p--\n", "abcd");
-//	count = printf("Space : % p--\n", "abcd");
-//	count = printf("Plus  : %+p--\n", "abcd");
-
-	ft_printf("\n*****  BONUS 1 (d) *****\n\n");
-
-	count = printf("Nada  : %d--\n", 1234);
-	count = printf("Minus : %-7d--\n", 1234);
-	count = printf("Minus : %-2d--\n", 1234);
-	count = printf("Zero  : %07d--\n", 1234);
-	count = printf("Zero  : %02d--\n", 1234);	
-	count = printf("Dot   : %.7d--\n", 1234);
-	count = printf("Dot   : %.2d--\n", 1234);
-	count = printf("Width : %7d--\n", 1234);
-	count = printf("Width : %2d--\n", 1234);
-//	count = printf("Hash  : %#d--\n", 1234);
-	count = printf("Space : % 10d--\n", 1234);
-	count = printf("Plus  : %+10d--\n", 1234);
-
-	ft_printf("\n*****  BONUS 1 (i) *****\n\n");
-
-	count = printf("Nada  : %i--\n", 1234);
-	count = printf("Minus : %-7i--\n", 1234);
-	count = printf("Minus : %-2i--\n", 1234);
-	count = printf("Zero  : %07i--\n", 1234);
-	count = printf("Zero  : %02i--\n", 1234);	
-	count = printf("Dot   : %.7i--\n", 1234);
-	count = printf("Dot   : %.2i--\n", 1234);
-	count = printf("Width : %7i--\n", 1234);
-	count = printf("Width : %2i--\n", 1234);
-//	count = printf("Hash  : %#i--\n", 1234);
-	count = printf("Space : % 10i--\n", 1234);
-	count = printf("Plus  : %+10i--\n", 1234);
-
-	ft_printf("\n*****  BONUS 1 (u) *****\n\n");
-
-	count = printf("Nada  : %u--\n", 1234);
-	count = printf("Minus : %-7u--\n", 1234);
-	count = printf("Minus : %-2u--\n", 1234);
-	count = printf("Zero  : %07u--\n", 1234);
-	count = printf("Zero  : %02u--\n", 1234);	
-	count = printf("Dot   : %.7u--\n", 1234);
-	count = printf("Dot   : %.2u--\n", 1234);
-	count = printf("Width : %7u--\n", 1234);
-	count = printf("Width : %2u--\n", 1234);
-//	count = printf("Hash  : %#u--\n", 1234);
-//	count = printf("Space : % 10u--\n", 1234);
-//	count = printf("Plus  : %+10u--\n", 1234);
-
-	ft_printf("\n*****  BONUS 1 (x) *****\n\n");
-
-	count = printf("Nada  : %x--\n", 1234);
-	count = printf("Minus : %-7x--\n", 1234);
-	count = printf("Minus : %-2x--\n", 1234);
-	count = printf("Zero  : %07x--\n", 1234);
-	count = printf("Zero  : %02x--\n", 1234);	
-	count = printf("Dot   : %.7x--\n", 1234);
-	count = printf("Dot   : %.2x--\n", 1234);
-	count = printf("Width : %7x--\n", 1234);
-	count = printf("Width : %2x--\n", 1234);
-	count = printf("Hash  : %#x--\n", 1234);
-//	count = printf("Space : % 10x--\n", 1234);
-//	count = printf("Plus  : %+10x--\n", 1234);
-
-	ft_printf("\n*****  BONUS 1 (X) *****\n\n");
-
-	count = printf("Nada  : %X--\n", 1234);
-	count = printf("Minus : %-7X--\n", 1234);
-	count = printf("Minus : %-2X--\n", 1234);
-	count = printf("Zero  : %07X--\n", 1234);
-	count = printf("Zero  : %02X--\n", 1234);	
-	count = printf("Dot   : %.7X--\n", 1234);
-	count = printf("Dot   : %.2X--\n", 1234);
-	count = printf("Width : %7X--\n", 1234);
-	count = printf("Width : %2X--\n", 1234);
-	count = printf("Hash  : %#X--\n", 1234);
-//	count = printf("Space : % 10x--\n", 1234);
-//	count = printf("Plus  : %+10x--\n", 1234);
-
-//	printf("%d\n", count-2);
-
-    return 0;
+	printf(" : %d\n", printf(format, nbr));
+	printf(" : %d\n", ft_printf(format, nbr));
 }
+
+void	test_h (char *format, unsigned int nbr)
+{
+	printf(" : %d\n", printf(format, nbr));
+	printf(" : %d\n", ft_printf(format, nbr));
+}
+
+void	test_p (char *format, void *ptr)
+{
+	printf(" : %d\n", printf(format, ptr));
+	printf(" : %d\n", ft_printf(format, ptr));
+}
+
+void	test_u (char *format, unsigned int nbr)
+{
+	printf(" : %d\n", printf(format, nbr));
+	printf(" : %d\n", ft_printf(format, nbr));
+}
+
+void	test_w (char *format)
+{
+	printf(" : %d\n", printf(format));
+	printf(" : %d\n", ft_printf(format));
+}
+
+int	main(void)
+{
+	atexit(ft_leaks);
+// 	test_d("%d", 1523589012);
+// 	test_d("%d", -354316);
+// 	test_d("%-7d", 1234);
+// 	test_d("%-2d", 1254);
+// 	test_d("%07d", 1264);
+// 	test_d("%03d", 1235);
+// 	test_d("%.7d", 1236);
+// 	test_d("%.2d", 1237);
+// 	test_d("%7d", 1238);
+// 	test_d("%2d", 1239);
+// 	test_d("% 10d", 1241);
+// 	test_d("%+10d", 1242);
+// 	test_d("%.5d", 2);
+// 	test_d("%.3d", 0);
+// 	test_d("%8.5d", 35);
+// 	test_d("%8.5d", 0);
+// 	test_d("%8.3d", 8375);
+// 	test_d("%-8.5d", 34);
+// 	test_d("%3.7d", 3267);
+// 	test_d("%-8.5d", 0);
+// 	test_d("%-8.3d", 8376);
+// 	test_d("%-3.7d", 3268);
+// 	test_d("%08.5d", 34);
+// 	test_d("%08.5d", 0);
+// 	test_d("%-1d", 0);
+// 	test_d("%-3d", 1);
+// 	test_d("%.0d", 0);
+// 	test_d("%.d", 0);
+// 	test_d("%5.0d", 0);
+// 	test_d("%5.d", 0);
+
+// 	test_u("%u", -10);
+// 	test_u(" %u ", 0);
+// 	test_u("%8.5u", 35);
+
+	test_w("%5%");
+	test_w("%-5%");
+	test_w("%-05%");
+	test_w("%-05%hola");
+
+ft_printf("\nNEGATIVOS\n\n");
+
+	test_d("%.6d", -3);
+	test_d("%07d", -54);
+	test_d("%10.5d", -216);
+	test_d("%3.7d", -2375);
+	test_d("%-10.5d", -216);
+	test_d("%-3.7d", -2375);
+	test_d("%010.5d", -216);
+	test_d("%03.7d", -2375);
+	test_d("%10.2d", -2375);
+
+// ft_printf("\nHEXADECIMALES\n\n");
+
+// 	test_h("%x", 0);
+// 	test_h("%X", 0);
+// 	test_h("%x", 0x0);
+// 	test_h("%X", 0x0);
+// 	test_h("%x", 0x41AF5C);
+// 	test_h("%X", 0x41af5c);
+// 	test_h("%x", 0xffffffff);
+// 	test_h("%X", 0xffffffff);
+
+// ft_printf("\nBonus 2 (Hexa)\n\n");
+
+// 	ft_printf("\n\"#\"\n");
+
+// 	test_h("%#x", 0);
+// 	test_h("%#X", 0);
+// 	test_h("%#x", 0x41AF5C);
+// 	test_h("%#X", 0x41af5c);
+// 	test_h("%#x", 0xffffffff);
+// 	test_h("%#X", 0xffffffff);
+
+// 	ft_printf("\n\" \"\n");
+
+// 	test_h("% x", 0);
+// 	test_h("% X", 0);
+// 	test_h("% x", 0x41AF5C);
+// 	test_h("% X", 0x41af5c);
+// 	test_h("% x", 0xffffffff);
+// 	test_h("% X", 0xffffffff);
+
+// 	ft_printf("\n\"+\"\n");
+
+// 	test_h("%+x", 0);
+// 	test_h("%+X", 0);
+// 	test_h("%+x", 0x41AF5C);
+// 	test_h("%+X", 0x41af5c);
+// 	test_h("%+x", 0xffffffff);
+// 	test_h("%+X", 0xffffffff);
+
+// 	ft_printf("\n\"# Width\"\n");
+
+// 	test_h("%#1x", 0);
+// 	test_h("%#5X", 0);
+// 	test_h("%#3x", 0x41AF5C);
+// 	test_h("%#20X", 0x41af5c);
+// 	test_h("%#3x", 0xffffffff);
+// 	test_h("%#20X", 0xffffffff);
+
+// 	ft_printf("\n\"  Width\"\n");
+
+// 	test_h("% 1x", 0);
+// 	test_h("% 5X", 0);
+// 	test_h("% 3x", 0x41AF5C);
+// 	test_h("% 20X", 0x41af5c);
+// 	test_h("% 3x", 0xffffffff);
+// 	test_h("% 20X", 0xffffffff);
+
+// 	ft_printf("\n\"+ Width\"\n");
+
+// 	test_h("%+1x", 0);
+// 	test_h("%+5X", 0);
+// 	test_h("%+3x", 0x41AF5C);
+// 	test_h("%+20X", 0x41af5c);
+// 	test_h("%+3x", 0xffffffff);
+// 	test_h("%+20X", 0xffffffff);
+
+// ft_printf("\nBonus 1 (Hexa)\n\n");
+
+//  	ft_printf("\n\"-\"\n");
+// 	test_h("%-0x", 0);
+// 	test_h("%-5X", 0);
+// 	test_h("%-3x", 0x41AF5C);
+// 	test_h("%-20X", 0x41af5c);
+// 	test_h("%-3x", 0xffffffff);
+// 	test_h("%-20X", 0xffffffff);
+
+//  	ft_printf("\n\"#-\"\n");
+// 	test_h("%#-0x", 0);
+// 	test_h("%#-5X", 0);
+// 	test_h("%#-3x", 0x41AF5C);
+// 	test_h("%#-20X", 0x41af5c);
+// 	test_h("%#-3x", 0xffffffff);
+// 	test_h("%#-20X", 0xffffffff);
+
+
+// ft_printf("\nBonus 1 (Hexa)\n\n");
+
+//  	ft_printf("\n\"0\"\n");
+// 	test_h("%0x", 0);
+// 	test_h("%05X", 0);
+// 	test_h("%03x", 0x41AF5C);
+// 	test_h("%020X", 0x41af5c);
+// 	test_h("%03x", 0xffffffff);
+// 	test_h("%020X", 0xffffffff);
+
+//  	ft_printf("\n\"#0\"\n");
+// 	test_h("%#00x", 0);
+// 	test_h("%#05X", 0);
+// 	test_h("%#03x", 0x41AF5C);
+// 	test_h("%#020X", 0x41af5c);
+// 	test_h("%#03x", 0xffffffff);
+// 	test_h("%#020X", 0xffffffff);
+
+//  	ft_printf("\n\".\"\n");
+// 	test_h("%.x", 0);
+// 	test_h("%.5X", 0);
+// 	test_h("%.3x", 0x41AF5C);
+// 	test_h("%.20X", 0x41af5c);
+// 	test_h("%.3x", 0xffffffff);
+// 	test_h("%.20X", 0xffffffff);
+
+//  	ft_printf("\n\"#.\"\n");
+// 	test_h("%#.0x", 0);
+// 	test_h("%#.5X", 0);
+// 	test_h("%#.3x", 0x41AF5C);
+// 	test_h("%#.20X", 0x41af5c);
+// 	test_h("%#.3x", 0xffffffff);
+// 	test_h("%#.20X", 0xffffffff);
+
+//  	test_h("%#-x", 0);
+//  	test_h("%#-X", 0);
+// 	test_h("%#-x", 0x0);
+//  	test_h("%#-X", 0x0);
+//  	test_h("%#-x", 0x41AF5C);
+//  	test_h("%#-X", 0x41af5c);
+//  	test_h("%#-x", 0xffffffff);
+//  	test_h("%#-X", 0xffffffff);
+
+// 	test_h("%x", 1234);
+// 	test_h("%-7X", 1235);
+// 	test_h("%-2x", 1236);
+// 	test_h("%07X", 0xdef);
+// 	test_h("%02x", 1238);
+// 	test_h("%.7X", 1239);
+// 	test_h("%.2x", 1240);
+// 	test_h("%7X", 1241);
+// 	test_h("%2x", 1242);
+// 	test_h("%#X", 0xabc);
+// 	test_h("%#x", 1244);
+// 	test_h("%#-7X", 1245);
+// 	test_h("%#-2x", 1246);
+// 	test_h("%#012X", 0x8001);
+// 	test_h("%#02x", 1248);
+// 	test_h("%#.7X", 1249);
+// 	test_h("%#.2x", 1250);
+// 	test_h("%#7X", 0x789);
+// 	test_h("%#2x", 1252);
+// 	test_h("%#15.8x", 0x1234);
+// 	test_h("%#015x", 0x1235);
+// 	test_h("%#15.8x", 0x1236);
+// 	test_h("%#3.8x", 0x1237);
+// 	test_h("%#03.8x", 0x1238);
+// 	test_h("%.0x", 0x7890);
+
+//ptr = "42Malaga";	
+// 	test_p("%p", ptr);
+
+
+	return (0);
+}
+

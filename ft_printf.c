@@ -30,9 +30,9 @@ static int	ft_convert(va_list *args, t_flags *flags)
 	else if (flags->specifier == 's')
 		len = ft_pf_string(args, flags);
 	else if (flags->specifier == 'p')
-		len = ft_pf_ptr(args, flags->specifier);
+		len = hex_convert(args, flags);
 	else if ((flags->specifier == 'x') || (flags->specifier == 'X'))
-		len = ft_pf_hex(args, flags);
+		len = hex_convert(args, flags);
 	else if ((flags->specifier == 'd') || (flags->specifier == 'i'))
 		len = ft_pf_nbr(args, flags);
 	else if (flags->specifier == 'u')

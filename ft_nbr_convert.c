@@ -23,13 +23,6 @@ char	*ft_putprfx(int nbr, t_flags *flags)
 		str_prfx = "+";
 	else if ((nbr >= 0) && (flags->space))
 		str_prfx = " ";
-	else if ((flags->hash) && (nbr != 0))
-	{
-		if (flags->specifier == 'X')
-			str_prfx = "0X";
-		else
-			str_prfx = "0x";
-	}
 	str_nbr = ft_itoa(nbr);
 	if (!str_nbr)
 		return (NULL);

@@ -39,12 +39,13 @@ void	ft_read_flags(t_flags *flags, char const *format);
 int		ft_pf_char(va_list *args, t_flags *flags);
 int		ft_pf_string(va_list *args, t_flags *flags);
 int		ft_pf_ptr(va_list *args, char specifier);
-int		ft_pf_hex(va_list *args, t_flags *flags);
+int		hex_convert(va_list *args, t_flags *flags);
 int		ft_pf_nbr(va_list *args, t_flags *flags);
 int		ft_pf_uint(va_list *args, t_flags *flags);
 int		ft_pf_char_na(t_flags *flags);
 int		ft_putprefix(int nbr, t_flags *flags);
 int		padding_nbr(char *str, t_flags *flags);
 char	*ft_uitoa(unsigned int n);
+char	*ft_htoa(size_t n, int specifier);
 
 #endif

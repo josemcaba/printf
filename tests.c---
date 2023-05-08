@@ -258,6 +258,19 @@ int main(void)
 //	count = printf("Space : % p--\n", "abcd");
 //	count = printf("Plus  : %+p--\n", "abcd");
 
+	count = ft_printf("Nada  : %p--\n", "abcd");
+	count = ft_printf("Minus : %-18p--\n", "abcd");
+	count = ft_printf("Minus : %-2p--\n", "abcd");
+// 	count = printf("Zero  : %07p--\n", "abcd");
+// 	count = printf("Zero  : %02p--\n", "abcd");	
+// 	count = printf("Dot   : %.7p--\n", "abcd");
+//	count = printf("Dot   : %.2p--\n", "abcd");
+	count = ft_printf("Width : %18p--\n", "abcd");
+	count = ft_printf("Width : %2p--\n", "abcd");
+//	count = printf("Hash  : %#p--\n", "abcd");
+//	count = printf("Space : % p--\n", "abcd");
+//	count = printf("Plus  : %+p--\n", "abcd");
+
 	ft_printf("\n*****  BONUS 1 (d) *****\n\n");
 
 	count = printf("Nada  : %d--\n", 1234);

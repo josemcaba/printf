@@ -32,17 +32,19 @@ static int	ft_hnbr_len(size_t n)
 	return (len);
 }
 
-static void	ft_fillhnbr(size_t n, char *str)
+static void	ft_fillhnbr(size_t n, char *str, int specifier)
 {
 	char	*hex_base;
 
 	hex_base = "0123456789abcdef";
+	if (specifier == 'X')
+		hex_base = "0123456789ABCDEF";
 	if (n > 15)
-		ft_fillhnbr(n / 16, str - 1);
+		ft_fillhnbr(n / 16, str - 1, specifier);
 	*str = hex_base[n % 16];
 }
 
-char	*ft_htoa(size_t n)
+char	*ft_htoa(size_t n, int specifier)
 {
 	int		len;
 	char	*str;
@@ -52,6 +54,6 @@ char	*ft_htoa(size_t n)
 	if (!str)
 		return (0);
 	str[len] = '\0';
-	ft_fillhnbr(n, &str[len - 1]);
+	ft_fillhnbr(n, &str[len - 1], specifier);
 	return (str);
 }
