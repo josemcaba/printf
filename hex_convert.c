@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 23:23:17 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 00:02:58 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	add_width(char **pad, int nbr_len, t_flags *flags)
 	int	pad_len;
 
 	pad_len = ft_strlen(*pad);
-	if (flags->zero && !flags->precision)
+	if (flags->zero && !flags->dot)
 	{
 		ft_memset(*pad, '0', pad_len - nbr_len);
 		if (ft_strchr(*pad, flags->specifier))
