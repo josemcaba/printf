@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/08 23:37:44 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:11:50 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,78 +98,47 @@ int	padding_nbr(char *str, t_flags *flags)
 	return (pad_len);
 }
 
+void	fill_pad_int(char **pad, char *nbr, t_flags *flags)
+{
+	int	pad_len;
+	int	nbr_len;
+	int	no_zero;
+
+	pad_len = ft_strlen(*pad);
+	if (pad_len)
+	{
+		nbr_len = ft_strlen(nbr) - flags->negative;
+		no_zero = ft_strncmp(nbr, "0", nbr_len);
+		ft_memcpy(*pad, nbr + flags->negative, nbr_len);
+		add_precision(&(*pad), &nbr_len, flags, !no_zero);
+		add_prefix_int(&(*pad), &nbr_len, flags, no_zero);
+		if (!flags->minus)
+		{
+			ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);
+			ft_memset(*pad, ' ', pad_len - nbr_len);
+			add_width_int(&(*pad), nbr_len, flags);
+		}
+	}
+}
+
 int	ft_pf_uint(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
-	int				len;
-	char			*str_nbr;
-	char			*pad;
+	int		len;
+	char	*str_nbr;
+	char	*pad;
 
 	nbr = va_arg(*args, unsigned int);
 	str_nbr = ft_uitoa(nbr);
 	if (!str_nbr)
 		return (-1);
-//	if (flags->nflags)
-//	{
-		len = alloc_pad_int(&pad, str_nbr, flags);
-		if (len != -1)
-		{
-			fill_pad_int(&pad, str_nbr, flags);
-			len = ft_putstr(pad);
-			free(pad);
-		}
-//	}
-//	else
-//		len = ft_putstr(str_nbr);
+	len = alloc_pad_int(&pad, str_nbr, flags);
+	if (len != -1)
+	{
+		fill_pad_int(&pad, str_nbr, flags);
+		len = ft_putstr(pad);
+		free(pad);
+	}
 	free(str_nbr);
 	return (len);
 }
-
-// int	ft_pf_uint(va_list *args, t_flags *flags)
-// {
-// 	int					len;
-// 	unsigned int		nbr;
-// 	char				*str;
-
-// 	nbr = va_arg(*args, unsigned int);
-// 	str = ft_uitoa(nbr);
-// 	if (!str)
-// 		return (-1);
-// 	if (flags->nflags)
-// 		len = padding_nbr(str, flags);
-// 	else
-// 		len = ft_putstr(str);
-// 	free(str);
-// 	return (len);
-// }
-
-// static int	ft_putuint(unsigned int n, int *error_flag)
-// {
-// 	int	digit;
-// 	int	len;
-
-// 	len = 0;
-// 	if (n > 9)
-// 		len = ft_putuint((n / 10), error_flag);
-// 	if (*error_flag)
-// 		return (-1);
-// 	digit = (n % 10) + '0';
-// 	if (ft_putchar(digit) == -1)
-// 	{
-// 		*error_flag = 1;
-// 		return (-1);
-// 	}
-// 	return (len + 1);
-// }
-
-// int	ft_pf_uint(va_list *args, t_flags *flags)
-// {
-// 	int	len;
-// 	int	error_flag;
-
-// 	len = 0;
-// 	error_flag = 0;
-// 	if (flags->specifier == 'u')
-// 		len = ft_putuint(va_arg(*args, unsigned int), &error_flag);
-// 	return (len);
-// }

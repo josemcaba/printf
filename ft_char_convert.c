@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:19:30 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 01:20:12 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:08:47 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	padding_char(unsigned char c, t_flags *flags)
 	int	cc;
 
 	cc = ' ';
-	if (flags->zero) 
+	if (flags->zero)
 		cc = '0';
 	len = flags->width;
 	if (flags->minus)
@@ -53,7 +53,7 @@ int	ft_pf_char(va_list *args, t_flags *flags)
 	return (len);
 }
 
-int		ft_pf_char_na(t_flags *flags)
+int	ft_pf_char_na(t_flags *flags)
 {
 	int	len;
 

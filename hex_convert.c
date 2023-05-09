@@ -6,86 +6,16 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 00:56:22 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:09:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// static int	ft_puthex(size_t n, char specifier, int *error_flag)
-// {
-// 	char	*hex_base;
-// 	int		digit;
-// 	int		len;
-
-// 	hex_base = "0123456789abcdef";
-// 	if (specifier == 'X')
-// 		hex_base = "0123456789ABCDEF";
-// 	len = 0;
-// 	if (n > 15)
-// 		len = ft_puthex((n / 16), specifier, error_flag);
-// 	if (*error_flag)
-// 		return (-1);
-// 	digit = n % 16;
-// 	if (ft_putchar(hex_base[digit]) == -1)
-// 	{
-// 		*error_flag = 1;
-// 		return (-1);
-// 	}
-// 	return (len + 1);
-// }
-
-// int	ft_pf_ptr(va_list *args, char specifier)
-// {
-// 	size_t	nbr;
-// 	int		len;
-// 	int		error_flag;
-
-// 	len = 0;
-// 	nbr = (size_t)va_arg(*args, void *);
-// 	if (!nbr)
-// 	{
-// 		if (ft_putstr("0x0") == -1)
-// 			return (-1);
-// 		return (ft_strlen("0x0"));
-// 	}
-// 	if (ft_putstr("0x") == -1)
-// 		return (-1);
-// 	error_flag = 0;
-// 	len = ft_puthex(nbr, specifier, &error_flag);
-// 	if (len == -1)
-// 		return (-1);
-// 	return (len + 2);
-// }
-
-// char	*put_hex_prefix(unsigned int nbr, t_flags *flags)
-// {
-// 	char	*str;
-// 	char	*prefix;
-// 	char	*str_nbr;
-
-// 	prefix = "";
-// 	if ((flags->hash) && (nbr != 0))
-// 	{
-// 		prefix = "0x";
-// 		if (flags->specifier == 'X')
-// 			prefix = "0X";
-// 	}
-// 	str_nbr = ft_htoa(nbr, flags->specifier);
-// 	if (!str_nbr)
-// 		return (NULL);
-	
-// 	str = ft_strjoin(prefix, str_nbr);
-// 	free(str_nbr);
-// 	if (!str)
-// 		return (NULL);
-// 	return (str);
-// }
-
 int	alloc_pad(char **pad, char *nbr, t_flags *flags)
 {
 	int	pad_len;
-	int no_zero;
+	int	no_zero;
 
 	pad_len = ft_strlen(nbr);
 	no_zero = ft_strncmp(nbr, "0", pad_len);
@@ -104,38 +34,18 @@ int	alloc_pad(char **pad, char *nbr, t_flags *flags)
 	return (pad_len);
 }
 
-void	add_prefix(char **pad, int *nbr_len, t_flags *flags,  int no_zero)
+void	add_prefix(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 {
 	char	*prefix;
 
 	prefix = "0x";
 	if (flags->specifier == 'X')
-		prefix = "0X";	
+		prefix = "0X";
 	if ((flags->hash && no_zero) || (flags->specifier == 'p'))
 	{
 		ft_memmove(&(*pad)[2], *pad, *nbr_len);
 		ft_memcpy(*pad, prefix, 2);
 		*nbr_len += 2;
-	}
-}
-
-void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero)
-{
-	int	offset;
-
-	offset = 0;
-	if (flags->dot && (flags->precision > *nbr_len))
-	{
-		offset = flags->precision - *nbr_len;
-		ft_memmove(&(*pad)[offset], *pad, *nbr_len);
-		ft_memset(*pad, '0', offset);
-		*nbr_len += offset;
-	}
-	if (flags->dot && (flags->precision == 0) && zero)
-	{
-		*ft_strchr(*pad, '0') = ' ';
-		if (ft_strlen(*pad) > 1)
-			*nbr_len = 0;
 	}
 }
 
@@ -181,12 +91,7 @@ void	fill_pad(char **pad, char *nbr, t_flags *flags)
 size_t	read_hex_nbr(va_list *args, t_flags *flags)
 {
 	if (flags->specifier == 'p')
-	{
-//		flags->specifier = 'x';
-//		flags->hash = 1;
-//		flags->nflags += 1;
 		return ((size_t)va_arg(*args, void *));
-	}
 	else
 		return (va_arg(*args, unsigned int));
 }
@@ -194,26 +99,21 @@ size_t	read_hex_nbr(va_list *args, t_flags *flags)
 int	hex_convert(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
-	int				len;
-	char			*str_nbr;
-	char			*pad;
+	int		len;
+	char	*str_nbr;
+	char	*pad;
 
 	nbr = read_hex_nbr(args, flags);
 	str_nbr = ft_htoa(nbr, flags->specifier);
 	if (!str_nbr)
 		return (-1);
-//	if (flags->nflags)
-//	{
-		len = alloc_pad(&pad, str_nbr, flags);
-		if (len != -1)
-		{
-			fill_pad(&pad, str_nbr, flags);
-			len = ft_putstr(pad);
-			free(pad);
-		}
-//	}
-//	else
-//		len = ft_putstr(str_nbr);
+	len = alloc_pad(&pad, str_nbr, flags);
+	if (len != -1)
+	{
+		fill_pad(&pad, str_nbr, flags);
+		len = ft_putstr(pad);
+		free(pad);
+	}
 	free(str_nbr);
 	return (len);
 }
