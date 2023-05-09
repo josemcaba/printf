@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 14:09:13 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:27:18 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,6 @@ void	fill_pad(char **pad, char *nbr, t_flags *flags)
 	}
 }
 
-size_t	read_hex_nbr(va_list *args, t_flags *flags)
-{
-	if (flags->specifier == 'p')
-		return ((size_t)va_arg(*args, void *));
-	else
-		return (va_arg(*args, unsigned int));
-}
-
 int	hex_convert(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
@@ -103,7 +95,10 @@ int	hex_convert(va_list *args, t_flags *flags)
 	char	*str_nbr;
 	char	*pad;
 
-	nbr = read_hex_nbr(args, flags);
+	if (flags->specifier == 'p')
+		nbr = (size_t)va_arg(*args, void *);
+	else
+		nbr = va_arg(*args, unsigned int);
 	str_nbr = ft_htoa(nbr, flags->specifier);
 	if (!str_nbr)
 		return (-1);
