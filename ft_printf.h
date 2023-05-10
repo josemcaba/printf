@@ -33,25 +33,21 @@ typedef struct s_flags
 }	t_flags;
 
 int		ft_printf(char const *format, ...);
+int		char_convert(va_list *args, t_flags *flags);
+int		char_convert_narg(t_flags *flags);
+int		str_convert(va_list *args, t_flags *flags);
+int		int_convert(va_list *args, t_flags *flags);
+void	fill_pad_int(char **pad, char *nbr, t_flags *flags);
+void	add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero);
+int		alloc_pad_int(char **pad, char *nbr, t_flags *flags);
+void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero);
+void	add_width_int(char **pad, int nbr_len, t_flags *flags);
+int		uint_convert(va_list *args, t_flags *flags);
+int		hex_convert(va_list *args, t_flags *flags);
+void	flags_read(t_flags *flags, char const *format);
 ssize_t	ft_putchar(char c);
 ssize_t	ft_putstr(char *s);
-void	ft_init_flags(t_flags *flags);
-void	ft_read_flags(t_flags *flags, char const *format);
-int		ft_pf_char(va_list *args, t_flags *flags);
-int		ft_pf_string(va_list *args, t_flags *flags);
-int		ft_pf_ptr(va_list *args, char specifier);
-int		hex_convert(va_list *args, t_flags *flags);
-int		ft_pf_nbr(va_list *args, t_flags *flags);
-int		ft_pf_uint(va_list *args, t_flags *flags);
-int		ft_pf_char_na(t_flags *flags);
-int		ft_putprefix(int nbr, t_flags *flags);
-int		padding_nbr(char *str, t_flags *flags);
-char	*ft_uitoa(unsigned int n);
 char	*ft_htoa(size_t n, int specifier);
-void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero);
-void	fill_pad_int(char **pad, char *nbr, t_flags *flags);
-int		alloc_pad_int(char **pad, char *nbr, t_flags *flags);
-void	add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero);
-void	add_width_int(char **pad, int nbr_len, t_flags *flags);
+char	*ft_uitoa(unsigned int n);
 
 #endif

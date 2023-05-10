@@ -18,7 +18,7 @@
 
 #include "ft_printf.h"
 
-static int	ft_nbrlen(unsigned int n)
+static int	nbr_len(unsigned int n)
 {
 	int	len;
 
@@ -33,10 +33,10 @@ static int	ft_nbrlen(unsigned int n)
 	return (len);
 }
 
-static void	ft_fillnbr(unsigned int n, char *str)
+static void	fill_nbr(unsigned int n, char *str)
 {
 	if (n > 9)
-		ft_fillnbr(n / 10, str - 1);
+		fill_nbr(n / 10, str - 1);
 	*str = (n % 10) + '0';
 }
 
@@ -45,11 +45,11 @@ char	*ft_uitoa(unsigned int n)
 	int		len;
 	char	*str;
 
-	len = ft_nbrlen(n);
+	len = nbr_len(n);
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	str[len] = '\0';
-	ft_fillnbr(n, &str[len - 1]);
+	fill_nbr(n, &str[len - 1]);
 	return (str);
 }

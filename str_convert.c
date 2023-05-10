@@ -17,7 +17,7 @@ ssize_t	ft_putstr(char *s)
 	return (write(1, s, ft_strlen(s)));
 }
 
-int	padding_str(char *str, t_flags *flags)
+static int	padding_str(char *str, t_flags *flags)
 {
 	char	*s;
 	int		str_len;
@@ -44,7 +44,7 @@ int	padding_str(char *str, t_flags *flags)
 	return (pad_len);
 }
 
-int	ft_pf_string(va_list *args, t_flags *flags)
+int	str_convert(va_list *args, t_flags *flags)
 {
 	char	*str;
 	int		len;

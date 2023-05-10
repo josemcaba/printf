@@ -12,34 +12,6 @@
 
 #include "ft_printf.h"
 
-int	alloc_pad_int(char **pad, char *nbr, t_flags *flags)
-{
-	int	pad_len;
-	int	no_zero;
-
-	pad_len = ft_strlen(nbr);
-	no_zero = ft_strncmp(nbr, "0", pad_len);
-	if (flags->negative)
-		pad_len--;
-	if (flags->dot && (flags->precision > pad_len))
-		pad_len = flags->precision;
-	if (flags->dot && (flags->precision == 0) && !no_zero)
-		pad_len--;
-	if (flags->negative && no_zero)
-		pad_len++;
-	if (flags->space && !flags->negative)
-		pad_len++;
-	if (flags->plus && !flags->negative)
-		pad_len++;
-	if (flags->width > pad_len)
-		pad_len = flags->width;
-	*pad = (char *)ft_calloc(pad_len + 1, sizeof(char));
-	if (!*pad)
-		return (-1);
-	ft_memset(*pad, ' ', pad_len);
-	return (pad_len);
-}
-
 void	add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 {
 	if ((flags->negative) && (no_zero))
@@ -114,7 +86,35 @@ void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero)
 	}
 }
 
-int	ft_pf_nbr(va_list *args, t_flags *flags)
+int	alloc_pad_int(char **pad, char *nbr, t_flags *flags)
+{
+	int	pad_len;
+	int	no_zero;
+
+	pad_len = ft_strlen(nbr);
+	no_zero = ft_strncmp(nbr, "0", pad_len);
+	if (flags->negative)
+		pad_len--;
+	if (flags->dot && (flags->precision > pad_len))
+		pad_len = flags->precision;
+	if (flags->dot && (flags->precision == 0) && !no_zero)
+		pad_len--;
+	if (flags->negative && no_zero)
+		pad_len++;
+	if (flags->space && !flags->negative)
+		pad_len++;
+	if (flags->plus && !flags->negative)
+		pad_len++;
+	if (flags->width > pad_len)
+		pad_len = flags->width;
+	*pad = (char *)ft_calloc(pad_len + 1, sizeof(char));
+	if (!*pad)
+		return (-1);
+	ft_memset(*pad, ' ', pad_len);
+	return (pad_len);
+}
+
+int	int_convert(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
 	int		len;

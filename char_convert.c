@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char_convert.c                                  :+:      :+:    :+:   */
+/*   char_convert.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:19:30 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 13:08:47 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:08:47 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	padding_char(unsigned char c, t_flags *flags)
+static int	padding_char(unsigned char c, t_flags *flags)
 {
 	int	len;
 	int	cc;
@@ -40,7 +40,18 @@ int	padding_char(unsigned char c, t_flags *flags)
 	return (len);
 }
 
-int	ft_pf_char(va_list *args, t_flags *flags)
+int	char_convert_narg(t_flags *flags)
+{
+	int	len;
+
+	if (flags->width)
+		len = padding_char(flags->specifier, flags);
+	else
+		len = ft_putchar(flags->specifier);
+	return (len);
+}
+
+int	char_convert(va_list *args, t_flags *flags)
 {
 	unsigned int	c;
 	int				len;
@@ -50,16 +61,5 @@ int	ft_pf_char(va_list *args, t_flags *flags)
 		len = padding_char(c, flags);
 	else
 		len = ft_putchar(c);
-	return (len);
-}
-
-int	ft_pf_char_na(t_flags *flags)
-{
-	int	len;
-
-	if (flags->width)
-		len = padding_char(flags->specifier, flags);
-	else
-		len = ft_putchar(flags->specifier);
 	return (len);
 }

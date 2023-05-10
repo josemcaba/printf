@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 08:36:56 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 19:16:37 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/02 19:16:38 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,38 @@ ssize_t	ft_putchar(char c)
 	return (len);
 }
 
-static int	ft_convert(va_list *args, t_flags *flags)
+static int	convert(va_list *args, t_flags *flags)
 {
 	int		len;
 
 	len = 0;
 	if (flags->specifier == 'c')
-		len = ft_pf_char(args, flags);
+		len = char_convert(args, flags);
 	else if (flags->specifier == 's')
-		len = ft_pf_string(args, flags);
+		len = str_convert(args, flags);
 	else if (flags->specifier == 'p')
 		len = hex_convert(args, flags);
 	else if ((flags->specifier == 'x') || (flags->specifier == 'X'))
 		len = hex_convert(args, flags);
 	else if ((flags->specifier == 'd') || (flags->specifier == 'i'))
-		len = ft_pf_nbr(args, flags);
+		len = int_convert(args, flags);
 	else if (flags->specifier == 'u')
-		len = ft_pf_uint(args, flags);
+		len = uint_convert(args, flags);
 	else if ((flags->specifier == '%') && (!flags->nflags))
 		len = ft_putchar(flags->specifier);
 	else if (flags->nflags)
-		len = ft_pf_char_na(flags);
+		len = char_convert_narg(flags);
 	return (len);
 }
 
-int	ft_parse_and_print(char const *format, t_flags *flags, va_list *args)
+static int	parse_and_print(char const *format, t_flags *flags, va_list *args)
 {
 	int	len;
 
 	if (*format == '%')
 	{
-		ft_read_flags(flags, ++format);
-		len = ft_convert(args, flags);
+		flags_read(flags, ++format);
+		len = convert(args, flags);
 		if (len == -1)
 			return (-1);
 	}
@@ -76,7 +76,7 @@ int	ft_printf(char const *format, ...)
 	while (*format)
 	{
 		flags.nflags = 0;
-		t_len = ft_parse_and_print(format, &flags, &args);
+		t_len = parse_and_print(format, &flags, &args);
 		if (t_len == -1)
 			return (-1);
 		len += t_len;

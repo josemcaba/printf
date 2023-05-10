@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_init_flags(t_flags *flags)
+static void	flags_init(t_flags *flags)
 {
 	flags->specifier = '\0';
 	flags->minus = 0;
@@ -27,7 +27,7 @@ void	ft_init_flags(t_flags *flags)
 	flags->negative = 0;
 }
 
-static void	ft_fill_flags(t_flags *flags, char flag)
+static void	flags_fill(t_flags *flags, char flag)
 {
 	if (flag == '-')
 		flags->minus = 1;
@@ -43,16 +43,16 @@ static void	ft_fill_flags(t_flags *flags, char flag)
 		flags->plus = 1;
 }
 
-void	ft_read_flags(t_flags *flags, char const *format)
+void	flags_read(t_flags *flags, char const *format)
 {
 	int		i;
 	char	*valid_flags;
 
 	valid_flags = "-0.# +";
-	ft_init_flags(flags);
+	flags_init(flags);
 	i = 0;
 	while (ft_strchr(valid_flags, format[i]))
-		ft_fill_flags(flags, format[i++]);
+		flags_fill(flags, format[i++]);
 	if (flags->dot)
 		flags->precision = ft_atoi(&format[i]);
 	else
