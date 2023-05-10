@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	add_width(char **pad, int nbr_len, t_flags *flags)
+static void	add_width_hex(char **pad, int nbr_len, t_flags *flags)
 {
 	int	pad_len;
 
@@ -28,7 +28,7 @@ static void	add_width(char **pad, int nbr_len, t_flags *flags)
 	}
 }
 
-static void	add_prefix(char **pad, int *nbr_len, t_flags *flags, int no_zero)
+static void	add_prefix_hex(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 {
 	char	*prefix;
 
@@ -43,7 +43,7 @@ static void	add_prefix(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 	}
 }
 
-static void	fill_pad(char **pad, char *nbr, t_flags *flags)
+static void	fill_pad_hex(char **pad, char *nbr, t_flags *flags)
 {
 	int	pad_len;
 	int	nbr_len;
@@ -56,17 +56,17 @@ static void	fill_pad(char **pad, char *nbr, t_flags *flags)
 		no_zero = ft_strncmp(nbr, "0", nbr_len);
 		ft_memcpy(*pad, nbr, nbr_len);
 		add_precision(&(*pad), &nbr_len, flags, !no_zero);
-		add_prefix(&(*pad), &nbr_len, flags, no_zero);
+		add_prefix_hex(&(*pad), &nbr_len, flags, no_zero);
 		if (!flags->minus)
 		{
 			ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);
 			ft_memset(*pad, ' ', pad_len - nbr_len);
-			add_width(&(*pad), nbr_len, flags);
+			add_width_hex(&(*pad), nbr_len, flags);
 		}
 	}
 }
 
-static int	alloc_pad(char **pad, char *nbr, t_flags *flags)
+static int	alloc_pad_hex(char **pad, char *nbr, t_flags *flags)
 {
 	int	pad_len;
 	int	no_zero;
@@ -102,10 +102,10 @@ int	hex_convert(va_list *args, t_flags *flags)
 	str_nbr = ft_htoa(nbr, flags->specifier);
 	if (!str_nbr)
 		return (-1);
-	len = alloc_pad(&pad, str_nbr, flags);
+	len = alloc_pad_hex(&pad, str_nbr, flags);
 	if (len != -1)
 	{
-		fill_pad(&pad, str_nbr, flags);
+		fill_pad_hex(&pad, str_nbr, flags);
 		len = ft_putstr(pad);
 		free(pad);
 	}

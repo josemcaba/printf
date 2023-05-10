@@ -257,7 +257,7 @@ ft_printf("\nBonus 1 (Hexa)\n\n");
 	test_p("%p", ptr);
 	printf(" : %d\n", printf(" %#x ", 0xffffffff));
 	printf(" : %d\n", ft_printf(" %p ", -1));
-	ft_printf("Ceros\n");
+	ft_printf("----------------------Ceros-----------------------------\n");
 	int len;
 	len = printf("%.d, %.0d", 0, 0);
 	printf(" : %d\n", len);
