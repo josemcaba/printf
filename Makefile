@@ -14,9 +14,10 @@ NAME = libftprintf.a
 
 HDR = ft_printf.h
 
-SRC	= 	ft_printf.c		char_convert.c	str_convert.c \
-		hex_convert.c	int_convert.c 	uint_convert.c\
-		flags_read.c	ft_htoa.c		ft_uitoa.c
+SRC	= 	ft_printf.c		char_convert.c	str_convert.c	\
+		hex_convert.c	int_convert.c 	uint_convert.c	\
+		flags_read.c	ft_htoa.c		ft_uitoa.c		\
+		ft_putchar.c	ft_putstr.c
 		
 OBJ = $(SRC:%.c=%.o)
 
@@ -59,3 +60,4 @@ bonus : all
 tests : all
 	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf -o a.exe
 	./a.exe
+	@rm ./a.exe

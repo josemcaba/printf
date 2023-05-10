@@ -12,14 +12,6 @@
 
 #include "ft_printf.h"
 
-ssize_t	ft_putchar(char c)
-{
-	ssize_t	len;
-
-	len = write(1, &c, 1);
-	return (len);
-}
-
 static int	convert(va_list *args, t_flags *flags)
 {
 	int		len;
