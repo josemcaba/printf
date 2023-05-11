@@ -43,7 +43,7 @@ static void	flags_fill(t_flags *flags, char flag)
 		flags->plus = 1;
 }
 
-void	flags_read(t_flags *flags, char const *format)
+void	pf_flags_read(t_flags *flags, char const *format)
 {
 	int		i;
 	char	*valid_flags;

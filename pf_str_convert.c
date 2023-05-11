@@ -39,7 +39,7 @@ static int	padding_str(char *str, t_flags *flags)
 	return (pad_len);
 }
 
-int	str_convert(va_list *args, t_flags *flags)
+int	pf_str_convert(va_list *args, t_flags *flags)
 {
 	char	*str;
 	int		len;

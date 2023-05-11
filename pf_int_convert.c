@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
+void	pf_add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 {
 	if ((flags->negative) && (no_zero))
 	{
@@ -40,7 +40,7 @@ void	add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 	}
 }
 
-void	add_width_int(char **pad, int nbr_len, t_flags *flags)
+void	pf_add_width_int(char **pad, int nbr_len, t_flags *flags)
 {
 	int	pad_len;
 
@@ -66,7 +66,7 @@ void	add_width_int(char **pad, int nbr_len, t_flags *flags)
 	}
 }
 
-void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero)
+void	pf_add_precision(char **pad, int *nbr_len, t_flags *flags, int zero)
 {
 	int	offset;
 
@@ -86,7 +86,7 @@ void	add_precision(char **pad, int *nbr_len, t_flags *flags, int zero)
 	}
 }
 
-int	alloc_pad_int(char **pad, char *nbr, t_flags *flags)
+int	pf_alloc_pad_int(char **pad, char *nbr, t_flags *flags)
 {
 	int	pad_len;
 	int	no_zero;
@@ -114,7 +114,7 @@ int	alloc_pad_int(char **pad, char *nbr, t_flags *flags)
 	return (pad_len);
 }
 
-int	int_convert(va_list *args, t_flags *flags)
+int	pf_int_convert(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
 	int		len;
@@ -127,10 +127,10 @@ int	int_convert(va_list *args, t_flags *flags)
 		return (-1);
 	if (*str_nbr == '-')
 		flags->negative = 1;
-	len = alloc_pad_int(&pad, str_nbr, flags);
+	len = pf_alloc_pad_int(&pad, str_nbr, flags);
 	if (len != -1)
 	{
-		fill_pad_int(&pad, str_nbr, flags);
+		pf_fill_pad_int(&pad, str_nbr, flags);
 		len = ft_putstr(pad);
 		free(pad);
 	}

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	fill_pad_int(char **pad, char *nbr, t_flags *flags)
+void	pf_fill_pad_int(char **pad, char *nbr, t_flags *flags)
 {
 	int	pad_len;
 	int	nbr_len;
@@ -24,18 +24,18 @@ void	fill_pad_int(char **pad, char *nbr, t_flags *flags)
 		nbr_len = ft_strlen(nbr) - flags->negative;
 		no_zero = ft_strncmp(nbr, "0", nbr_len);
 		ft_memcpy(*pad, nbr + flags->negative, nbr_len);
-		add_precision(&(*pad), &nbr_len, flags, !no_zero);
-		add_prefix_int(&(*pad), &nbr_len, flags, no_zero);
+		pf_add_precision(&(*pad), &nbr_len, flags, !no_zero);
+		pf_add_prefix_int(&(*pad), &nbr_len, flags, no_zero);
 		if (!flags->minus)
 		{
 			ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);
 			ft_memset(*pad, ' ', pad_len - nbr_len);
-			add_width_int(&(*pad), nbr_len, flags);
+			pf_add_width_int(&(*pad), nbr_len, flags);
 		}
 	}
 }
 
-int	uint_convert(va_list *args, t_flags *flags)
+int	pf_uint_convert(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
 	int		len;
@@ -46,10 +46,10 @@ int	uint_convert(va_list *args, t_flags *flags)
 	str_nbr = ft_uitoa(nbr);
 	if (!str_nbr)
 		return (-1);
-	len = alloc_pad_int(&pad, str_nbr, flags);
+	len = pf_alloc_pad_int(&pad, str_nbr, flags);
 	if (len != -1)
 	{
-		fill_pad_int(&pad, str_nbr, flags);
+		pf_fill_pad_int(&pad, str_nbr, flags);
 		len = ft_putstr(pad);
 		free(pad);
 	}

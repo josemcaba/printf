@@ -14,10 +14,10 @@ NAME = libftprintf.a
 
 HDR = ft_printf.h
 
-SRC	= 	ft_printf.c		char_convert.c	str_convert.c	\
-		hex_convert.c	int_convert.c 	uint_convert.c	\
-		flags_read.c	ft_htoa.c		ft_uitoa.c		\
-		ft_putchar.c	ft_putstr.c
+SRC	= 	ft_printf.c			pf_char_convert.c	pf_str_convert.c	\
+		pf_hex_convert.c	pf_int_convert.c 	pf_uint_convert.c	\
+		pf_flags_read.c		ft_htoa.c			ft_uitoa.c		\
+		ft_putchar.c		ft_putstr.c
 		
 OBJ = $(SRC:%.c=%.o)
 
@@ -39,7 +39,7 @@ $(NAME): $(OBJ) $(HDR) $(LIBFT)
 	@$(LIB) $(NAME) $(OBJ)
 	@echo "-------> Library $(NAME) has been created"
 
-.PHONY: clean fclean re bonus
+.PHONY: clean fclean re bonus make_ft
 
 clean :
 	rm -f $(OBJ)
@@ -56,8 +56,3 @@ bonus : all
 	@cp $(LIBFT) $(NAME)
 	@$(LIB) $(NAME) $(OBJ)
 	@echo "-------> Library $(NAME) has been created including bonus functions"
-
-tests : all
-	gcc -Wall -Werror -Wextra tests.c -L. -lftprintf -o a.exe
-	./a.exe
-	@rm ./a.exe

@@ -55,7 +55,7 @@ static void	fill_pad_hex(char **pad, char *nbr, t_flags *flags)
 		nbr_len = ft_strlen(nbr);
 		no_zero = ft_strncmp(nbr, "0", nbr_len);
 		ft_memcpy(*pad, nbr, nbr_len);
-		add_precision(&(*pad), &nbr_len, flags, !no_zero);
+		pf_add_precision(&(*pad), &nbr_len, flags, !no_zero);
 		add_prefix_hex(&(*pad), &nbr_len, flags, no_zero);
 		if (!flags->minus)
 		{
@@ -88,7 +88,7 @@ static int	alloc_pad_hex(char **pad, char *nbr, t_flags *flags)
 	return (pad_len);
 }
 
-int	hex_convert(va_list *args, t_flags *flags)
+int	pf_hex_convert(va_list *args, t_flags *flags)
 {
 	size_t	nbr;
 	int		len;

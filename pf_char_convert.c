@@ -40,7 +40,7 @@ static int	padding_char(unsigned char c, t_flags *flags)
 	return (len);
 }
 
-int	char_convert_narg(t_flags *flags)
+int	pf_char_convert_narg(t_flags *flags)
 {
 	int	len;
 
@@ -51,7 +51,7 @@ int	char_convert_narg(t_flags *flags)
 	return (len);
 }
 
-int	char_convert(va_list *args, t_flags *flags)
+int	pf_char_convert(va_list *args, t_flags *flags)
 {
 	unsigned int	c;
 	int				len;
