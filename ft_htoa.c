@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_htoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:52:20 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/02 23:27:20 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:37:52 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	hnbr_len(size_t n)
 	}
 	return (len);
 }
-
 
 char	*ft_htoa(size_t n, int specifier)
 {

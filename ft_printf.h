@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/30 08:36:40 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 14:15:10 by jocaball         ###   ########.fr       */
+/*   Created: 2023/04/30 08:36:34 by jocaball          #+#    #+#             */
+/*   Updated: 2023/05/11 20:31:17 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		pf_char_convert_narg(t_flags *flags);
 int		pf_str_convert(va_list *args, t_flags *flags);
 int		pf_int_convert(va_list *args, t_flags *flags);
 void	pf_fill_pad_int(char **pad, char *nbr, t_flags *flags);
-void	pf_add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero);
+void	pf_add_prfx_int(char **pad, int *nbr_len, t_flags *flags, int no_zero);
 int		pf_alloc_pad_int(char **pad, char *nbr, t_flags *flags);
 void	pf_add_precision(char **pad, int *nbr_len, t_flags *flags, int zero);
 void	pf_add_width_int(char **pad, int nbr_len, t_flags *flags);

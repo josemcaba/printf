@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hex_convert.c                                      :+:      :+:    :+:   */
+/*   pf_hex_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 14:27:19 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:34:15 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	add_width_hex(char **pad, int nbr_len, t_flags *flags)
 	}
 }
 
-static void	add_prefix_hex(char **pad, int *nbr_len, t_flags *flags, int no_zero)
+static void	add_prfx_hex(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 {
 	char	*prefix;
 
@@ -56,7 +56,7 @@ static void	fill_pad_hex(char **pad, char *nbr, t_flags *flags)
 		no_zero = ft_strncmp(nbr, "0", nbr_len);
 		ft_memcpy(*pad, nbr, nbr_len);
 		pf_add_precision(&(*pad), &nbr_len, flags, !no_zero);
-		add_prefix_hex(&(*pad), &nbr_len, flags, no_zero);
+		add_prfx_hex(&(*pad), &nbr_len, flags, no_zero);
 		if (!flags->minus)
 		{
 			ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);

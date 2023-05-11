@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbr_convert.c                                   :+:      :+:    :+:   */
+/*   pf_int_convert.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 14:10:36 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:34:40 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pf_add_prefix_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
+void	pf_add_prfx_int(char **pad, int *nbr_len, t_flags *flags, int no_zero)
 {
 	if ((flags->negative) && (no_zero))
 	{

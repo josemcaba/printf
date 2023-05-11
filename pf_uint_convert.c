@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uint_convert.c                                  :+:      :+:    :+:   */
+/*   pf_uint_convert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:23:04 by jocaball          #+#    #+#             */
-/*   Updated: 2023/05/09 14:11:50 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:35:35 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	pf_fill_pad_int(char **pad, char *nbr, t_flags *flags)
 		no_zero = ft_strncmp(nbr, "0", nbr_len);
 		ft_memcpy(*pad, nbr + flags->negative, nbr_len);
 		pf_add_precision(&(*pad), &nbr_len, flags, !no_zero);
-		pf_add_prefix_int(&(*pad), &nbr_len, flags, no_zero);
+		pf_add_prfx_int(&(*pad), &nbr_len, flags, no_zero);
 		if (!flags->minus)
 		{
 			ft_memmove(&(*pad)[pad_len - nbr_len], *pad, nbr_len);
